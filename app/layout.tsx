@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@audaxventures",
   },
+  icons: {
+    icon: "/audax-icon.png",
+    apple: "/audax-icon.png",
+  },
   robots: { index: true, follow: true },
 };
 
