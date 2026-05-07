@@ -9,21 +9,25 @@ import { Menu, X, ChevronDown } from "lucide-react";
 const mainServices = [
   { label: "MVP Development", href: "/services/mvp-development", desc: "Validate and ship your idea fast" },
   { label: "SaaS Development", href: "/services/saas-development", desc: "Scalable, multi-tenant platforms" },
-  { label: "AI Consulting", href: "/services/ai-consulting", desc: "LLMs, automation & AI strategy" },
+  { label: "Internal Development", href: "/services/internal-tools", desc: "Custom tools for your internal teams" },
 ];
 
 const otherServices = [
-  { label: "Internal Tools", href: "/services/internal-tools" },
   { label: "Website Development", href: "/services/website-development" },
   { label: "E-Commerce Development", href: "/services/ecommerce-development" },
   { label: "iOS Development", href: "/services/ios-development" },
   { label: "Android Development", href: "/services/android-development" },
   { label: "Front End Development", href: "/services/frontend-development" },
   { label: "Back End Development", href: "/services/backend-development" },
-  { label: "Custom Software", href: "/services/custom-software-development" },
+  { label: "Web Development", href: "/services/web-development" },
+  { label: "Custom Software Development", href: "/services/custom-software-development" },
   { label: "QA & Testing", href: "/services/qa-testing" },
   { label: "Process Automation", href: "/services/process-automation" },
+  { label: "Customer Service Automation", href: "/services/customer-service-automation" },
+  { label: "AI Consulting", href: "/services/ai-consulting" },
+  { label: "CRM Systems", href: "/services/crm-systems" },
   { label: "CTO-as-a-Service", href: "/services/cto-as-a-service" },
+  { label: "Digital Marketing", href: "/services/digital-marketing" },
 ];
 
 const allServices = [...mainServices, ...otherServices];
