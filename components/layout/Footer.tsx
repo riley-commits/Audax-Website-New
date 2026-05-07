@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 // Social icon SVGs inline (lucide-react doesn't include these in this version)
 
 const services = [
@@ -46,14 +47,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Top: Logo + Mission */}
         <div className="mb-12">
-          <Link href="/" className="flex items-center gap-2 mb-3">
-            <div className="w-9 h-9 rounded-full bg-[#2E5F8A] flex items-center justify-center">
-              <span className="text-white font-[var(--font-outfit)] font-bold text-lg">A</span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-[var(--font-outfit)] font-extrabold text-white text-base tracking-tight">AUDAX</span>
-              <span className="text-[#6B7280] text-[9px] tracking-widest uppercase font-medium">VENTURES</span>
-            </div>
+          <Link href="/" className="inline-flex mb-3">
+            <Image src="/audax-logo.png" alt="Audax Ventures" width={160} height={52} className="h-10 w-auto brightness-0 invert" />
           </Link>
           <p className="text-gray-400 text-sm max-w-xs">
             Canada&apos;s most founder-aligned software development partner — from validated idea to scalable product.

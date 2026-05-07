@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
@@ -53,18 +54,8 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-full bg-[#2E5F8A] flex items-center justify-center">
-            <span className="text-white font-[var(--font-outfit)] font-bold text-lg leading-none">A</span>
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-[var(--font-outfit)] font-800 text-[#2E5F8A] text-base font-extrabold tracking-tight">
-              AUDAX
-            </span>
-            <span className="font-[var(--font-inter)] text-[#6B7280] text-[9px] tracking-widest uppercase font-medium">
-              VENTURES
-            </span>
-          </div>
+        <Link href="/" className="flex items-center">
+          <Image src="/audax-logo.png" alt="Audax Ventures" width={160} height={52} priority className="h-10 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
