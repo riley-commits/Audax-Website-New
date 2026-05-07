@@ -1,0 +1,142 @@
+import Link from "next/link";
+// Social icon SVGs inline (lucide-react doesn't include these in this version)
+
+const services = [
+  { label: "MVP Development", href: "/services/mvp-development" },
+  { label: "SaaS Development", href: "/services/saas-development" },
+  { label: "Internal Tools", href: "/services/internal-tools" },
+  { label: "Website Development", href: "/services/website-development" },
+  { label: "E-Commerce Development", href: "/services/ecommerce-development" },
+  { label: "iOS Development", href: "/services/ios-development" },
+  { label: "Android Development", href: "/services/android-development" },
+  { label: "AI Consulting", href: "/services/ai-consulting" },
+  { label: "CTO-as-a-Service", href: "/services/cto-as-a-service" },
+];
+
+const solutions = [
+  { label: "Catalyst for Founders", href: "/solutions/catalyst-for-founders" },
+  { label: "Enterprise Innovation Program", href: "/solutions/enterprise-innovation-program" },
+  { label: "MVP Calculator", href: "/mvp-calculator" },
+  { label: "Our Process", href: "/process" },
+  { label: "Success Stories", href: "/success-stories" },
+];
+
+const resources = [
+  { label: "Blog", href: "/blog" },
+  { label: "UI/UX Gallery", href: "/gallery" },
+  { label: "What Is an MVP?", href: "/guides/what-is-an-mvp" },
+  { label: "SaaS Pricing Guide", href: "/guides/saas-pricing-guide" },
+  { label: "How to Hire a Dev Agency", href: "/guides/how-to-hire-a-software-development-agency" },
+  { label: "MVP vs Prototype", href: "/guides/mvp-vs-prototype" },
+  { label: "How to Validate an Idea", href: "/guides/how-to-validate-a-startup-idea" },
+  { label: "CTO-as-a-Service Guide", href: "/guides/cto-as-a-service-guide" },
+];
+
+const company = [
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Careers", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#1A1A2E] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        {/* Top: Logo + Mission */}
+        <div className="mb-12">
+          <Link href="/" className="flex items-center gap-2 mb-3">
+            <div className="w-9 h-9 rounded-full bg-[#2E5F8A] flex items-center justify-center">
+              <span className="text-white font-[var(--font-outfit)] font-bold text-lg">A</span>
+            </div>
+            <div className="flex flex-col leading-none">
+              <span className="font-[var(--font-outfit)] font-extrabold text-white text-base tracking-tight">AUDAX</span>
+              <span className="text-[#6B7280] text-[9px] tracking-widest uppercase font-medium">VENTURES</span>
+            </div>
+          </Link>
+          <p className="text-gray-400 text-sm max-w-xs">
+            Canada&apos;s most founder-aligned software development partner — from validated idea to scalable product.
+          </p>
+        </div>
+
+        {/* Link Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <h3 className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-4">Services</h3>
+            <ul className="space-y-2">
+              {services.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-4">Solutions</h3>
+            <ul className="space-y-2">
+              {solutions.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-4">Resources</h3>
+            <ul className="space-y-2">
+              {resources.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-4">Company</h3>
+            <ul className="space-y-2">
+              {company.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-gray-500 text-sm">
+            © {new Date().getFullYear()} Audax Ventures. All rights reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="text-sm text-gray-500 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-sm text-gray-500 hover:text-white transition-colors">Terms of Service</Link>
+            <div className="flex items-center gap-3 ml-4">
+              <a href="https://linkedin.com/company/audaxventures" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                className="text-gray-500 hover:text-white transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="https://twitter.com/audaxventures" target="_blank" rel="noopener noreferrer" aria-label="Twitter"
+                className="text-gray-500 hover:text-white transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+              </a>
+              <a href="https://instagram.com/audaxventures" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                className="text-gray-500 hover:text-white transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
