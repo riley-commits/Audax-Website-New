@@ -6,9 +6,13 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-const services = [
-  { label: "MVP Development", href: "/services/mvp-development" },
-  { label: "SaaS Development", href: "/services/saas-development" },
+const mainServices = [
+  { label: "MVP Development", href: "/services/mvp-development", desc: "Validate and ship your idea fast" },
+  { label: "SaaS Development", href: "/services/saas-development", desc: "Scalable, multi-tenant platforms" },
+  { label: "AI Consulting", href: "/services/ai-consulting", desc: "LLMs, automation & AI strategy" },
+];
+
+const otherServices = [
   { label: "Internal Tools", href: "/services/internal-tools" },
   { label: "Website Development", href: "/services/website-development" },
   { label: "E-Commerce Development", href: "/services/ecommerce-development" },
@@ -19,9 +23,10 @@ const services = [
   { label: "Custom Software", href: "/services/custom-software-development" },
   { label: "QA & Testing", href: "/services/qa-testing" },
   { label: "Process Automation", href: "/services/process-automation" },
-  { label: "AI Consulting", href: "/services/ai-consulting" },
   { label: "CTO-as-a-Service", href: "/services/cto-as-a-service" },
 ];
+
+const allServices = [...mainServices, ...otherServices];
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -82,17 +87,45 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-3 grid grid-cols-1 gap-0.5"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[680px] bg-white rounded-2xl shadow-xl border border-gray-100 p-5"
                     >
-                      {services.map((s) => (
-                        <Link
-                          key={s.href}
-                          href={s.href}
-                          className="px-3 py-2 rounded-lg text-sm text-[#1A1A2E] hover:bg-[#F8F9FA] hover:text-[#2E5F8A] transition-colors"
-                        >
-                          {s.label}
-                        </Link>
-                      ))}
+                      <div className="flex gap-6">
+                        {/* Main Services — 1 column, 3 rows */}
+                        <div className="w-56 shrink-0">
+                          <p className="text-[10px] font-semibold tracking-widest uppercase text-[#2E5F8A] mb-3 px-1">Main Services</p>
+                          <div className="flex flex-col gap-0.5">
+                            {mainServices.map((s) => (
+                              <Link
+                                key={s.href}
+                                href={s.href}
+                                className="group px-3 py-2.5 rounded-xl hover:bg-[#F8F9FA] transition-colors"
+                              >
+                                <p className="text-sm font-semibold text-[#1A1A2E] group-hover:text-[#2E5F8A] transition-colors">{s.label}</p>
+                                <p className="text-xs text-[#6B7280] mt-0.5">{s.desc}</p>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="w-px bg-gray-100 self-stretch" />
+
+                        {/* Other Services — 3 columns, 5 rows */}
+                        <div className="flex-1">
+                          <p className="text-[10px] font-semibold tracking-widest uppercase text-[#6B7280] mb-3 px-1">Other Services</p>
+                          <div className="grid grid-cols-3 gap-x-2 gap-y-0.5">
+                            {otherServices.map((s) => (
+                              <Link
+                                key={s.href}
+                                href={s.href}
+                                className="px-2 py-2 rounded-lg text-sm text-[#1A1A2E] hover:bg-[#F8F9FA] hover:text-[#2E5F8A] transition-colors truncate"
+                              >
+                                {s.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -151,7 +184,7 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              {services.map((s) => (
+              {allServices.map((s) => (
                 <Link
                   key={s.href}
                   href={s.href}
