@@ -1,29 +1,192 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { ArrowRight, Lightbulb, Building2 } from "lucide-react";
 
-const solutions = [
+const programs = [
   {
     icon: Lightbulb,
     badge: "For Founders",
     title: "Catalyst for Founders",
     description:
-      "A structured Validate → Launch → Scale program for pre-seed and seed-stage founders. Get a technical partner, not just a vendor — from raw idea to revenue-generating product.",
+      "A technical partner, not just a vendor — from raw idea to revenue-generating product.",
     href: "/programs/catalyst-for-founders",
-    bg: "from-[#2E5F8A] to-[#3A7BD5]",
+    gradient: "from-[#1A3A5C] via-[#2E5F8A] to-[#1A3A5C]",
+    accentColor: "#3A7BD5",
+    phases: [
+      {
+        name: "Validate",
+        duration: "2–3 wks",
+        deliverables: ["Customer discovery", "MVP scope doc", "Lean experiment"],
+      },
+      {
+        name: "Launch",
+        duration: "8–16 wks",
+        deliverables: ["UI/UX in Figma", "Production MVP", "Cloud deployment"],
+      },
+      {
+        name: "Scale",
+        duration: "6–18 mo",
+        deliverables: ["Sprint roadmap", "A/B testing", "Fundraising support"],
+      },
+    ],
+    stat: { value: "50+", label: "founders launched" },
   },
   {
     icon: Building2,
     badge: "For Enterprise",
     title: "Enterprise Innovation Program",
     description:
-      "Three-phase Audit → Build → Scale program for corporate innovation teams and CTOs. Executive-ready reporting, senior-only team, and full IP transfer.",
+      "Senior-only team, executive-ready reporting, and full IP transfer — from whiteboard to production.",
     href: "/programs/enterprise-innovation-program",
-    bg: "from-[#1A1A2E] to-[#2E5F8A]",
+    gradient: "from-[#0F172A] via-[#1E2D45] to-[#0F172A]",
+    accentColor: "#60A5FA",
+    phases: [
+      {
+        name: "Audit",
+        duration: "2–3 wks",
+        deliverables: ["Tech landscape audit", "Innovation Blueprint", "Investment case"],
+      },
+      {
+        name: "Build",
+        duration: "3–9 mo",
+        deliverables: ["Production software", "Full test coverage", "Team training"],
+      },
+      {
+        name: "Scale",
+        duration: "6–24 mo",
+        deliverables: ["Sprint retainer", "Architecture evolution", "Roadmap reviews"],
+      },
+    ],
+    stat: { value: "100%", label: "IP ownership" },
   },
 ];
+
+function PhaseStrip({ phases, accentColor, inView }: {
+  phases: typeof programs[0]["phases"];
+  accentColor: string;
+  inView: boolean;
+}) {
+  return (
+    <div className="mt-7 mb-7">
+      {/* Connector line + dots row */}
+      <div className="relative flex items-start">
+        {/* Background track */}
+        <div className="absolute top-[13px] left-0 right-0 h-[2px] bg-white/10 rounded-full" />
+
+        {/* Animated fill */}
+        <motion.div
+          className="absolute top-[13px] left-0 h-[2px] rounded-full"
+          style={{ backgroundColor: accentColor }}
+          initial={{ width: "0%" }}
+          animate={inView ? { width: "100%" } : { width: "0%" }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+        />
+
+        {/* Phase columns */}
+        {phases.map((phase, i) => (
+          <div key={phase.name} className="flex-1 flex flex-col items-center relative">
+            {/* Dot */}
+            <motion.div
+              className="w-7 h-7 rounded-full border-2 flex items-center justify-center z-10 mb-3"
+              style={{ borderColor: accentColor, backgroundColor: "#0F172A" }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={inView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+              transition={{ delay: 0.2 + i * 0.2, duration: 0.3, type: "spring", stiffness: 300 }}
+            >
+              <motion.div
+                className="w-2.5 h-2.5 rounded-full"
+                style={{ backgroundColor: accentColor }}
+                initial={{ scale: 0 }}
+                animate={inView ? { scale: 1 } : { scale: 0 }}
+                transition={{ delay: 0.35 + i * 0.2, duration: 0.2 }}
+              />
+            </motion.div>
+
+            {/* Phase label + duration */}
+            <motion.div
+              className="text-center px-1"
+              initial={{ opacity: 0, y: 8 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              transition={{ delay: 0.4 + i * 0.2, duration: 0.3 }}
+            >
+              <p className="text-white font-[var(--font-outfit)] font-bold text-sm leading-none mb-1">
+                {phase.name}
+              </p>
+              <p className="text-white/40 text-[10px] font-medium mb-3">{phase.duration}</p>
+              <div className="space-y-1">
+                {phase.deliverables.map((d) => (
+                  <p key={d} className="text-white/55 text-[10px] leading-snug">{d}</p>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProgramCard({ program, delay }: { program: typeof programs[0]; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, delay }}
+      className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${program.gradient} p-8 text-white flex flex-col`}
+    >
+      {/* Decorative orbs */}
+      <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/4 pointer-events-none" />
+      <div className="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/4 pointer-events-none" />
+
+      {/* Header */}
+      <div className="relative flex items-start justify-between mb-4">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-xs font-semibold tracking-wide mb-4">
+            <program.icon size={12} />
+            {program.badge}
+          </div>
+          <h3 className="font-[var(--font-outfit)] font-extrabold text-2xl mb-2">{program.title}</h3>
+          <p className="text-white/60 text-sm leading-relaxed max-w-sm">{program.description}</p>
+        </div>
+        {/* Stat chip */}
+        <div className="shrink-0 ml-4 text-center bg-white/10 rounded-2xl px-4 py-3 border border-white/10">
+          <p className="font-[var(--font-outfit)] font-extrabold text-2xl text-white leading-none mb-0.5">
+            {program.stat.value}
+          </p>
+          <p className="text-white/45 text-[10px] leading-tight">{program.stat.label}</p>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="relative border-t border-white/10 mb-1">
+        <span className="absolute -top-2.5 left-0 text-[10px] font-bold uppercase tracking-widest text-white/30 bg-transparent">
+          Program Journey
+        </span>
+      </div>
+
+      {/* Animated phase strip */}
+      <PhaseStrip phases={program.phases} accentColor={program.accentColor} inView={inView} />
+
+      {/* CTA */}
+      <div className="relative mt-auto pt-2 border-t border-white/10">
+        <Link
+          href={program.href}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white font-semibold text-sm hover:bg-white/90 transition-colors"
+          style={{ color: program.accentColor }}
+        >
+          Full Program Details <ArrowRight size={14} />
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function SolutionsOverview() {
   return (
@@ -34,43 +197,22 @@ export default function SolutionsOverview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <p className="text-xs tracking-widest uppercase text-[#2E5F8A] font-semibold mb-3">Structured Programs</p>
+          <p className="text-xs tracking-widest uppercase text-[#2E5F8A] font-semibold mb-3">
+            Structured Programs
+          </p>
           <h2 className="font-[var(--font-outfit)] font-extrabold text-3xl sm:text-4xl text-[#1A1A2E] mb-4">
-            Our Solutions
+            Our Programs
           </h2>
           <p className="text-[#6B7280] text-lg max-w-2xl mx-auto">
-            Beyond individual services — structured programs designed for where you are in your journey.
+            Beyond individual services — structured, phased programs designed for where you are in your journey.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {solutions.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${s.bg} p-8 text-white`}
-            >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold tracking-wide mb-6">
-                <s.icon size={12} />
-                {s.badge}
-              </div>
-              <h3 className="font-[var(--font-outfit)] font-extrabold text-2xl mb-3">{s.title}</h3>
-              <p className="text-blue-100 text-sm leading-relaxed mb-8">{s.description}</p>
-              <Link
-                href={s.href}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#2E5F8A] font-semibold text-sm hover:bg-blue-50 transition-colors"
-              >
-                Learn More <ArrowRight size={14} />
-              </Link>
-              {/* Decorative circle */}
-              <div className="absolute -right-8 -bottom-8 w-40 h-40 rounded-full bg-white/5" />
-              <div className="absolute -right-4 -bottom-4 w-24 h-24 rounded-full bg-white/5" />
-            </motion.div>
+          {programs.map((program, i) => (
+            <ProgramCard key={program.title} program={program} delay={i * 0.15} />
           ))}
         </div>
       </div>
