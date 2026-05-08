@@ -306,7 +306,7 @@ export default function MVPCalculatorClient() {
                     <p className="text-sm font-semibold text-[#1A1A2E] mb-1">Recommended Program:</p>
                     <p className="text-[#2E5F8A] font-[var(--font-outfit)] font-bold text-lg">{recommendation}</p>
                     <Link
-                      href={recommendation === "Catalyst for Founders" ? "/solutions/catalyst-for-founders" : "/solutions/enterprise-innovation-program"}
+                      href={recommendation === "Catalyst for Founders" ? "/programs/catalyst-for-founders" : "/programs/enterprise-innovation-program"}
                       className="text-xs text-[#2E5F8A] hover:underline"
                     >
                       Learn about this program →

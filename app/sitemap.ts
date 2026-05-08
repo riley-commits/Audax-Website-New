@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllServiceSlugs } from "@/lib/services-data";
-import { getAllSolutionSlugs } from "@/lib/solutions-data";
+import { getAllSolutionSlugs } from "@/lib/solutions-data"; // slugs reused under /programs
 import { getAllBlogSlugs } from "@/lib/blog-data";
 import { getAllGuideSlugs } from "@/lib/guides-data";
 
@@ -25,12 +25,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const solutionPages = getAllSolutionSlugs().map((slug) => ({
-    url: `${base}/solutions/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  const programPages = [
+    { url: `${base}/programs`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
+    ...getAllSolutionSlugs().map((slug) => ({
+      url: `${base}/programs/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
 
   const blogPages = getAllBlogSlugs().map((slug) => ({
     url: `${base}/blog/${slug}`,
@@ -46,5 +49,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...servicePages, ...solutionPages, ...blogPages, ...guidePages];
+  return [...staticPages, ...servicePages, ...programPages, ...blogPages, ...guidePages];
 }

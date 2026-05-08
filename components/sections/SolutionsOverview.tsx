@@ -11,7 +11,7 @@ const solutions = [
     title: "Catalyst for Founders",
     description:
       "A structured Validate → Launch → Scale program for pre-seed and seed-stage founders. Get a technical partner, not just a vendor — from raw idea to revenue-generating product.",
-    href: "/solutions/catalyst-for-founders",
+    href: "/programs/catalyst-for-founders",
     bg: "from-[#2E5F8A] to-[#3A7BD5]",
   },
   {
@@ -20,7 +20,7 @@ const solutions = [
     title: "Enterprise Innovation Program",
     description:
       "Three-phase Audit → Build → Scale program for corporate innovation teams and CTOs. Executive-ready reporting, senior-only team, and full IP transfer.",
-    href: "/solutions/enterprise-innovation-program",
+    href: "/programs/enterprise-innovation-program",
     bg: "from-[#1A1A2E] to-[#2E5F8A]",
   },
 ];

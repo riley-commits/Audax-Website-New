@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "via.placeholder.com" },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/solutions",       destination: "/programs",       permanent: true },
+      { source: "/solutions/:slug", destination: "/programs/:slug", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

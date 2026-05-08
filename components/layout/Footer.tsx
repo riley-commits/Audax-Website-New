@@ -15,8 +15,8 @@ const services = [
 ];
 
 const solutions = [
-  { label: "Catalyst for Founders", href: "/solutions/catalyst-for-founders" },
-  { label: "Enterprise Innovation Program", href: "/solutions/enterprise-innovation-program" },
+  { label: "Catalyst for Founders", href: "/programs/catalyst-for-founders" },
+  { label: "Enterprise Innovation Program", href: "/programs/enterprise-innovation-program" },
   { label: "MVP Calculator", href: "/mvp-calculator" },
   { label: "Our Process", href: "/process" },
   { label: "Success Stories", href: "/success-stories" },

@@ -31,6 +31,11 @@ const otherServices = [
   { label: "Digital Marketing",           href: "/services/digital-marketing" },
 ];
 
+const programs = [
+  { label: "Catalyst for Founders",       href: "/programs/catalyst-for-founders",       desc: "Validate → Launch → Scale for founders",          num: "01" },
+  { label: "Enterprise Innovation Program", href: "/programs/enterprise-innovation-program", desc: "Audit → Build → Scale for corporate teams",        num: "02" },
+];
+
 const mainIndustries = [
   { label: "Healthcare & Medical",        href: "/industries/healthcare-medical",        desc: "HIPAA-compliant platforms & patient tools",      num: "01" },
   { label: "Manufacturing",               href: "/industries/manufacturing",              desc: "ERP, automation & operations software",          num: "02" },
@@ -52,7 +57,7 @@ const navLinks = [
   { label: "Home",           href: "/",                                  hasDropdown: false, hasIndustriesDropdown: false },
   { label: "Services",       href: "/services/mvp-development",          hasDropdown: true,  hasIndustriesDropdown: false },
   { label: "Industries",     href: "/industries",                         hasDropdown: false, hasIndustriesDropdown: true  },
-  { label: "Solutions",      href: "/solutions/catalyst-for-founders",   hasDropdown: false, hasIndustriesDropdown: false },
+  { label: "Programs",       href: "/programs",                           hasDropdown: false, hasIndustriesDropdown: false, hasProgramsDropdown: true },
   { label: "About",          href: "/about",                             hasDropdown: false, hasIndustriesDropdown: false },
   { label: "Resources",      href: "/blog",                              hasDropdown: false, hasIndustriesDropdown: false },
   { label: "MVP Calculator", href: "/mvp-calculator",                    hasDropdown: false, hasIndustriesDropdown: false },
@@ -61,8 +66,9 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled]           = useState(false);
   const [mobileOpen, setMobileOpen]       = useState(false);
-  const [servicesOpen, setServicesOpen]   = useState(false);
+  const [servicesOpen, setServicesOpen]     = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [programsOpen, setProgramsOpen]     = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -252,6 +258,60 @@ export default function Navbar() {
               </div>
             );
 
+            /* ── Programs Dropdown ── */
+            if (link.hasProgramsDropdown) return (
+              <div
+                key={link.label}
+                className="relative"
+                onMouseEnter={() => setProgramsOpen(true)}
+                onMouseLeave={() => setProgramsOpen(false)}
+              >
+                <Link
+                  href={link.href}
+                  className={`flex items-center gap-1 text-sm font-medium px-3 py-2 rounded-lg transition-all duration-200 ${
+                    isActive(link.href)
+                      ? "text-[#2E5F8A] bg-[#2E5F8A]/8 font-semibold"
+                      : "text-[#1A1A2E] hover:text-[#2E5F8A] hover:bg-[#2E5F8A]/6"
+                  } ${programsOpen ? "text-[#2E5F8A] bg-[#2E5F8A]/8" : ""}`}
+                >
+                  {link.label}
+                  <ChevronDown size={13} className={`transition-transform duration-250 ${programsOpen ? "rotate-180 text-[#2E5F8A]" : ""}`} />
+                </Link>
+
+                <AnimatePresence>
+                  {programsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                      transition={{ duration: 0.2, ease: [0.33, 1, 0.68, 1] }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[480px] bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-100 overflow-hidden"
+                    >
+                      <div className="p-5">
+                        <p className="text-[10px] font-bold tracking-widest uppercase text-[#2E5F8A] mb-4">Our Programs</p>
+                        <div className="flex flex-col gap-1">
+                          {programs.map((p) => (
+                            <Link key={p.href} href={p.href} className="group flex items-start gap-3 px-3 py-3 rounded-xl hover:bg-[#F8F9FA] transition-all duration-200">
+                              <span className="mt-0.5 text-[10px] font-bold text-[#2E5F8A]/40 tabular-nums group-hover:text-[#2E5F8A] transition-colors">{p.num}</span>
+                              <div>
+                                <p className="text-sm font-semibold text-[#1A1A2E] group-hover:text-[#2E5F8A] transition-colors leading-tight">{p.label}</p>
+                                <p className="text-xs text-[#6B7280] mt-0.5">{p.desc}</p>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-end">
+                          <Link href="/programs" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2E5F8A] hover:text-[#3A7BD5] transition-colors">
+                            View all programs <ArrowRight size={11} />
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+
             /* ── Regular link ── */
             return (
               <Link
@@ -377,6 +437,18 @@ export default function Navbar() {
                     </Link>
                   ))}
                 </div>
+              </div>
+
+              {/* Programs sub-section */}
+              <div className="border-t border-gray-100 pt-4 mb-4">
+                <p className="text-[10px] font-bold tracking-widest uppercase text-[#2E5F8A] px-3 mb-2">Programs</p>
+                {programs.map((p) => (
+                  <Link key={p.href} href={p.href} onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-2 pl-5 pr-3 py-2 rounded-lg text-sm text-[#374151] hover:text-[#2E5F8A] hover:bg-[#F8F9FA] transition-colors font-medium">
+                    <span className="text-[10px] text-[#2E5F8A]/50 font-bold tabular-nums">{p.num}</span>
+                    {p.label}
+                  </Link>
+                ))}
               </div>
 
               {/* Mobile CTA */}
