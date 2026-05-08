@@ -197,17 +197,37 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-20">
-      {/* Background: dot grid + soft orbs */}
+      {/* Animated gradient mesh background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Orb 1 — top-right, primary blue, drifts slowly */}
+        <motion.div
+          animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.12, 1] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-48 -right-48 w-[700px] h-[700px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(46,95,138,0.18) 0%, transparent 68%)" }}
+        />
+        {/* Orb 2 — bottom-left, accent blue, offset phase */}
+        <motion.div
+          animate={{ x: [0, -30, 0], y: [0, 40, 0], scale: [1, 1.18, 1] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+          className="absolute -bottom-48 -left-32 w-[600px] h-[600px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(58,123,213,0.13) 0%, transparent 68%)" }}
+        />
+        {/* Orb 3 — mid-canvas, subtle pulse */}
+        <motion.div
+          animate={{ scale: [1, 1.25, 1], opacity: [0.06, 0.13, 0.06] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(46,95,138,1) 0%, transparent 70%)" }}
+        />
+        {/* Fine dot grid overlay */}
         <div
-          className="absolute inset-0 opacity-[0.035]"
+          className="absolute inset-0 opacity-[0.028]"
           style={{
             backgroundImage: "radial-gradient(#2E5F8A 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
+            backgroundSize: "30px 30px",
           }}
         />
-        <div className="absolute -top-40 right-0 w-[700px] h-[700px] rounded-full bg-[#2E5F8A] opacity-[0.07] blur-3xl" />
-        <div className="absolute bottom-0 -left-20 w-[500px] h-[500px] rounded-full bg-[#3A7BD5] opacity-[0.05] blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">

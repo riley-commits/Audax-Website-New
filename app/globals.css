@@ -29,3 +29,17 @@ body {
   text-decoration-thickness: 3px;
   text-underline-offset: 6px;
 }
+
+/* Infinite marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
