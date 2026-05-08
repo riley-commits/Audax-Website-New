@@ -345,7 +345,7 @@ export default function HeroSection() {
                   ))}
                 </div>
                 <p className="text-sm text-[#6B7280]">
-                  <span className="font-semibold text-[#1A1A2E]">50+ projects delivered</span> for founders &amp; enterprises
+                  <span className="font-semibold text-[#1A1A2E]">50+ projects delivered</span>{" "}for founders &amp; enterprises
                 </p>
               </div>
             </motion.div>
