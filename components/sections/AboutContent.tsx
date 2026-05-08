@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Target, Eye, Heart, Zap, Users, Shield, TrendingUp, MapPin } from "lucide-react";
 
 const stats = [
@@ -52,6 +53,7 @@ const team = [
   {
     name: "Joshua Zaporzan",
     role: "President",
+    photo: "/team/joshua-zaporzan.avif",
     avatar: "JZ",
     bio: "Joshua leads Audax Ventures with a focus on combining software innovation, capital strategy, and operational excellence. He works closely with founders and enterprise teams to define what's possible and ensure every engagement delivers real business outcomes.",
     linkedin: "#",
@@ -59,6 +61,7 @@ const team = [
   {
     name: "Manoj Manghnani",
     role: "Director of Technology",
+    photo: "/team/manoj-manghnani.png",
     avatar: "MM",
     bio: "Manoj sets technical standards across all Audax engagements. He brings deep expertise in software architecture and leads the technical direction of complex builds — ensuring the systems we deliver are scalable, maintainable, and production-grade from day one.",
     linkedin: "#",
@@ -66,6 +69,7 @@ const team = [
   {
     name: "Denise Zaporzan",
     role: "Director of Strategy",
+    photo: "/team/denise-zaporzan.png",
     avatar: "DZ",
     bio: "Denise leads strategy development for Audax clients, helping founders and enterprise teams align their software investments with their broader business goals. She specializes in go-to-market positioning, operational design, and growth planning.",
     linkedin: "#",
@@ -73,6 +77,7 @@ const team = [
   {
     name: "Riley Peterson",
     role: "Project & Venture Manager",
+    photo: "/team/riley-peterson.png",
     avatar: "RP",
     bio: "Riley manages project delivery and venture development across the Audax portfolio. He keeps engagements on scope, on schedule, and on budget — acting as the day-to-day link between clients and the delivery team throughout every phase of a build.",
     linkedin: "#",
@@ -80,6 +85,7 @@ const team = [
   {
     name: "Lawson Yates",
     role: "Marketing Manager",
+    photo: "/team/lawson-yates.png",
     avatar: "LY",
     bio: "Lawson drives marketing strategy and execution for Audax and supports clients with their own go-to-market efforts. He combines content strategy, digital marketing, and brand development to build visibility and demand for the products we help create.",
     linkedin: "#",
@@ -87,6 +93,7 @@ const team = [
   {
     name: "Lindsay Friesen",
     role: "Project Manager",
+    photo: "/team/lindsay-friesen.png",
     avatar: "LF",
     bio: "Lindsay ensures every Audax project runs smoothly from kickoff through launch. She coordinates between design, development, and client stakeholders — keeping communication clear, timelines realistic, and deliverables on track across multiple concurrent engagements.",
     linkedin: "#",
@@ -340,8 +347,14 @@ export default function AboutContent() {
                 variants={fadeUp}
                 className="group bg-[#F8F9FA] rounded-2xl p-7 border border-gray-100 hover:border-[#2E5F8A]/30 hover:shadow-md transition-all duration-200 text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-[#2E5F8A] flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 group-hover:bg-[#3A7BD5] transition-colors font-[var(--font-outfit)]">
-                  {member.avatar}
+                <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden ring-2 ring-gray-100 group-hover:ring-[#2E5F8A]/40 transition-all duration-200">
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    width={96}
+                    height={96}
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
                 <h3 className="font-[var(--font-outfit)] font-bold text-[#1A1A2E] mb-0.5">{member.name}</h3>
                 <p className="text-[#2E5F8A] text-sm font-semibold mb-3">{member.role}</p>
