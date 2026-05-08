@@ -137,7 +137,7 @@ export default function StatsBar() {
             <AnimatedStat end={50}  suffix="+"     label="Projects Delivered"  delay={0}    />
             <AnimatedStat end={98}  suffix="%"     label="Client Satisfaction" delay={0.1}  />
             <AnimatedStat staticText="8–16 wks"   label="Time to MVP Launch"  delay={0.2}  />
-            <AnimatedStat staticText="$0"          label="Hidden Fees"         delay={0.3}  />
+            <AnimatedStat staticText="$15k"        label="Starting MVP Cost"   delay={0.3}  />
           </div>
         </div>
       </section>
