@@ -7,6 +7,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import BlogPreview from "@/components/sections/BlogPreview";
 import SolutionsOverview from "@/components/sections/SolutionsOverview";
 import StatsBar from "@/components/sections/StatsBar";
+import WaveDivider from "@/components/ui/WaveDivider";
 
 export const metadata: Metadata = {
   title: "Audax Ventures — Canada's Leading Software Development Company",
@@ -48,12 +49,26 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <HeroSection />
+      {/* #FAFAF8 → #F8F9FA (Hero → Trusted-by strip) */}
+      <WaveDivider from="#FAFAF8" to="#F8F9FA" />
       <StatsBar />
+      {/* #2E5F8A → #FAFAF8 (Stats bar → Services) — dramatic */}
+      <WaveDivider from="#2E5F8A" to="#FAFAF8" flip />
       <ServicesGrid />
+      {/* #FAFAF8 → #F8F9FA (Services → Solutions) */}
+      <WaveDivider from="#FAFAF8" to="#F8F9FA" />
       <SolutionsOverview />
+      {/* #F8F9FA → #FAFAF8 (Solutions → Process) */}
+      <WaveDivider from="#F8F9FA" to="#FAFAF8" flip />
       <ProcessSteps />
+      {/* #FAFAF8 → #F8F9FA (Process → Testimonials) */}
+      <WaveDivider from="#FAFAF8" to="#F8F9FA" />
       <TestimonialsSection />
+      {/* #F8F9FA → #FAFAF8 (Testimonials → Blog) */}
+      <WaveDivider from="#F8F9FA" to="#FAFAF8" flip />
       <BlogPreview />
+      {/* #FAFAF8 → #2E5F8A (Blog → CTA) — dramatic */}
+      <WaveDivider from="#FAFAF8" to="#2E5F8A" />
       <CTABanner />
     </>
   );

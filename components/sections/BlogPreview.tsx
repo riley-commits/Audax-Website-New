@@ -7,8 +7,17 @@ export default function BlogPreview() {
   const posts = blogPosts.slice(0, 3);
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 bg-[#FAFAF8] overflow-hidden">
+      {/* A — subtle dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, #2E5F8A 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.035,
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between mb-16">
           <div>
             <p className="text-xs tracking-widest uppercase text-[#2E5F8A] font-semibold mb-3">Latest Thinking</p>

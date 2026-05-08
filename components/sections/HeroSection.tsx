@@ -196,7 +196,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#FAFAF8] pt-20">
       {/* Animated gradient mesh background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Orb 1 — top-right, primary blue, drifts slowly */}

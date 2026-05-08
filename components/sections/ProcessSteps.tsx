@@ -13,8 +13,19 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 bg-[#FAFAF8] overflow-hidden">
+      {/* A — subtle dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, #2E5F8A 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          opacity: 0.035,
+        }}
+      />
+      {/* B — bottom-left corner orb */}
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#3A7BD5]/8 blur-3xl pointer-events-none" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
