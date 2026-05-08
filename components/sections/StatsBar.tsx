@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import Image from "next/image";
 
 // ── Count-up hook ──────────────────────────────────────────────────────────
 function useCountUp(end: number, duration = 1800, trigger: boolean) {
@@ -83,15 +82,15 @@ function AnimatedStat({
 }
 
 // ── Marquee data ───────────────────────────────────────────────────────────
-const trustedBy: { name: string; icon?: string; logo?: string; logoOnly?: boolean }[] = [
-  { name: "FundEze",               logo: "/logos/fundeze.png",       logoOnly: true  },
-  { name: "MigrateEzy",            logo: "/logos/migrateezy.png",    logoOnly: true  },
-  { name: "LinkGlobal Network",    icon: "🌐" },
-  { name: "GreenGlam Tech",        logo: "/logos/greenglam-tech.png", logoOnly: false },
-  { name: "H2MB",                  icon: "💧" },
-  { name: "AssessTEAM",            icon: "📋" },
-  { name: "Elkhorn Resort",        icon: "🏔️" },
-  { name: "Clear Lake Golf Course", icon: "⛳" },
+const trustedBy: { name: string; logo: string; logoOnly: boolean }[] = [
+  { name: "FundEze",                logo: "/logos/fundeze.png",        logoOnly: true  },
+  { name: "MigrateEzy",             logo: "/logos/migrateezy.png",     logoOnly: true  },
+  { name: "LinkGlobal Network",     logo: "/logos/linkglobal.avif",    logoOnly: false },
+  { name: "GreenGlam Tech",         logo: "/logos/greenglam-tech.png", logoOnly: false },
+  { name: "H2MB",                   logo: "/logos/h2mb.avif",          logoOnly: false },
+  { name: "AssessTEAM",             logo: "/logos/assessteam.svg",     logoOnly: true  },
+  { name: "Elkhorn Resort",         logo: "/logos/elkhorn-resort.avif", logoOnly: false },
+  { name: "Clear Lake Golf Course", logo: "/logos/clear-lake-golf.avif", logoOnly: false },
 ];
 
 // ── Main component ─────────────────────────────────────────────────────────
@@ -116,24 +115,14 @@ export default function StatsBar() {
                 key={i}
                 className="flex-shrink-0 mx-3 flex items-center gap-2 px-5 py-2.5 bg-white rounded-xl border border-gray-100 shadow-sm text-[#6B7280] font-[var(--font-outfit)] font-bold text-sm tracking-tight select-none"
               >
-                {co.logo ? (
-                  <>
-                    <Image
-                      src={co.logo}
-                      alt={co.name}
-                      width={co.logoOnly ? 110 : 28}
-                      height={28}
-                      className="h-7 w-auto object-contain"
-                    />
-                    {!co.logoOnly && (
-                      <span>{co.name}</span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <span className="text-base leading-none">{co.icon}</span>
-                    {co.name}
-                  </>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={co.logo}
+                  alt={co.name}
+                  className="h-7 w-auto object-contain"
+                />
+                {!co.logoOnly && (
+                  <span>{co.name}</span>
                 )}
               </div>
             ))}
