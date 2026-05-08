@@ -83,16 +83,14 @@ function AnimatedStat({
 
 // ── Marquee data ───────────────────────────────────────────────────────────
 const trustedBy = [
-  { name: "TechFlow",     icon: "⚡" },
-  { name: "NorthBridge",  icon: "🏗️" },
-  { name: "Meridian",     icon: "🌐" },
-  { name: "Apex Digital", icon: "🚀" },
-  { name: "CloudPath",    icon: "☁️" },
-  { name: "Pinnacle AI",  icon: "🤖" },
-  { name: "FrontierLabs", icon: "🔬" },
-  { name: "CrestData",    icon: "📊" },
-  { name: "VaultScale",   icon: "🔒" },
-  { name: "NexGen",       icon: "💡" },
+  { name: "FundEze",               icon: "💰" },
+  { name: "MigrateEzy",            icon: "✈️" },
+  { name: "LinkGlobal Network",    icon: "🌐" },
+  { name: "GreenGlam Tech",        icon: "🌿" },
+  { name: "H2MB",                  icon: "💧" },
+  { name: "AssessTEAM",            icon: "📋" },
+  { name: "Elkhorn Resort",        icon: "🏔️" },
+  { name: "Clear Lake Golf Course", icon: "⛳" },
 ];
 
 // ── Main component ─────────────────────────────────────────────────────────
