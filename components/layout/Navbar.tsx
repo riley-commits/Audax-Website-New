@@ -55,7 +55,7 @@ const otherIndustries = [
 
 const navLinks = [
   { label: "Home",           href: "/",                                  hasDropdown: false, hasIndustriesDropdown: false },
-  { label: "Services",       href: "/services/mvp-development",          hasDropdown: true,  hasIndustriesDropdown: false },
+  { label: "Services",       href: "/services",                          hasDropdown: true,  hasIndustriesDropdown: false },
   { label: "Industries",     href: "/industries",                         hasDropdown: false, hasIndustriesDropdown: true  },
   { label: "Programs",       href: "/programs",                           hasDropdown: false, hasIndustriesDropdown: false, hasProgramsDropdown: true },
   { label: "About",          href: "/about",                             hasDropdown: false, hasIndustriesDropdown: false },
@@ -178,8 +178,8 @@ export default function Navbar() {
                           </div>
                           <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
                             <p className="text-xs text-[#6B7280]">18 services across web, mobile & AI</p>
-                            <Link href="/services/mvp-development" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2E5F8A] hover:text-[#3A7BD5] transition-colors">
-                              View all services <ArrowRight size={11} />
+                            <Link href="/services" className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2E5F8A] hover:text-[#3A7BD5] transition-colors">
+                              View all 18 services <ArrowRight size={11} />
                             </Link>
                           </div>
                         </div>

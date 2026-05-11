@@ -1,0 +1,283 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import CTABanner from "@/components/layout/CTABanner";
+
+export const metadata: Metadata = {
+  title: "Software Development Services | Audax Ventures",
+  description:
+    "18 software development services for startups and enterprises — MVP development, SaaS platforms, internal tools, mobile apps, AI consulting, and more. Based in Canada.",
+  alternates: { canonical: "https://audaxventures.ca/services" },
+  openGraph: {
+    title: "Software Development Services | Audax Ventures",
+    description:
+      "18 software development services for startups and enterprises. MVP, SaaS, internal tools, mobile, AI, automation, and more.",
+    url: "https://audaxventures.ca/services",
+  },
+};
+
+// ── Data ─────────────────────────────────────────────────────────────────────
+
+const featured = [
+  {
+    num: "01",
+    icon: "🚀",
+    title: "MVP Development",
+    badge: "Most Popular",
+    tagline: "8–16 weeks from idea to launch",
+    description:
+      "We scope, design, and build the fastest defensible path to market validation — without cutting corners on architecture or user experience.",
+    href: "/services/mvp-development",
+    highlights: ["Scope definition & wireframes", "Full-stack development", "Production deployment", "Post-launch support"],
+    gradient: "from-[#1A3A5C] via-[#2E5F8A] to-[#1A3A5C]",
+    stat: { value: "50+", label: "MVPs shipped" },
+  },
+  {
+    num: "02",
+    icon: "☁️",
+    title: "SaaS Development",
+    badge: null,
+    tagline: "End-to-end platform builds",
+    description:
+      "Multi-tenancy, Stripe billing, role-based auth, and scalable cloud infrastructure — built to grow from 10 customers to 10,000 without a rewrite.",
+    href: "/services/saas-development",
+    highlights: ["Multi-tenant architecture", "Stripe billing integration", "CI/CD pipeline & DevOps", "99.9% uptime SLA"],
+    gradient: "from-indigo-950 via-indigo-800 to-indigo-950",
+    stat: { value: "99.9%", label: "uptime delivered" },
+  },
+  {
+    num: "03",
+    icon: "⚙️",
+    title: "Internal Tools",
+    badge: null,
+    tagline: "Replace spreadsheets with systems",
+    description:
+      "Custom internal tools built precisely for your team — automating the manual workflows that consume hours and introduce errors every week.",
+    href: "/services/internal-tools",
+    highlights: ["Process audit & workflow mapping", "Custom UI/UX design", "ERP / CRM integration", "Staff training & handoff"],
+    gradient: "from-teal-950 via-teal-800 to-teal-950",
+    stat: { value: "60%", label: "avg. time saved" },
+  },
+];
+
+const categories = [
+  {
+    label: "Web & Mobile",
+    description: "Frontend, backend, and cross-platform development across every surface.",
+    services: [
+      { icon: "🌐", title: "Website Development",    tagline: "Marketing sites that load fast and rank higher",             href: "/services/website-development" },
+      { icon: "🛍️", title: "E-Commerce Development", tagline: "Custom storefronts and headless commerce platforms",          href: "/services/ecommerce-development" },
+      { icon: "📱", title: "iOS App Development",    tagline: "Swift & SwiftUI apps built for the App Store",               href: "/services/ios-development" },
+      { icon: "🤖", title: "Android Development",    tagline: "Kotlin & React Native apps for Google Play",                 href: "/services/android-development" },
+      { icon: "⚛️", title: "Front End Development",  tagline: "React & Next.js interfaces that feel instant",               href: "/services/frontend-development" },
+      { icon: "🗄️", title: "Back End Development",   tagline: "APIs, databases, and server infrastructure at scale",        href: "/services/backend-development" },
+      { icon: "💻", title: "Web Development",         tagline: "Full-spectrum web apps, portals, and platforms",             href: "/services/web-development" },
+      { icon: "🛠️", title: "Custom Software",        tagline: "Purpose-built when off-the-shelf software falls short",      href: "/services/custom-software-development" },
+    ],
+  },
+  {
+    label: "Automation & AI",
+    description: "Eliminate manual work and add intelligence to your existing workflows.",
+    services: [
+      { icon: "🔄", title: "Process Automation",           tagline: "Automated approvals, routing, and system sync",            href: "/services/process-automation" },
+      { icon: "💬", title: "Customer Service Automation",  tagline: "AI chatbots and self-service support portals",             href: "/services/customer-service-automation" },
+      { icon: "🎯", title: "AI Consulting",                tagline: "LLM integration, RAG pipelines, and AI feature builds",    href: "/services/ai-consulting" },
+      { icon: "👥", title: "CRM Systems",                  tagline: "Custom CRMs built around your actual sales process",       href: "/services/crm-systems" },
+    ],
+  },
+  {
+    label: "Quality & Strategy",
+    description: "Technical leadership and quality assurance to de-risk every build.",
+    services: [
+      { icon: "🔍", title: "QA & Testing",          tagline: "Exploratory, automated, and load testing before launch", href: "/services/qa-testing" },
+      { icon: "📐", title: "CTO-as-a-Service",      tagline: "Fractional technical leadership for growing teams",      href: "/services/cto-as-a-service" },
+      { icon: "📈", title: "Digital Marketing",     tagline: "SEO, content, and paid acquisition that compounds",      href: "/services/digital-marketing" },
+    ],
+  },
+];
+
+const whyUs = [
+  { icon: "⚡", title: "8–16 week delivery", description: "Production-ready software in weeks, not quarters." },
+  { icon: "🔒", title: "You own everything", description: "Full IP transfer and source code on every engagement." },
+  { icon: "🇨🇦", title: "Canadian team", description: "Winnipeg-based, working in your timezone and under Canadian law." },
+  { icon: "🤝", title: "Fixed-price phases", description: "No runaway invoices — we scope honestly and price clearly." },
+];
+
+// ── Page ──────────────────────────────────────────────────────────────────────
+
+export default function ServicesPage() {
+  return (
+    <>
+      {/* ── Hero ── */}
+      <section className="pt-32 pb-20 bg-gradient-to-b from-[#F8F9FA] to-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2E5F8A]/10 text-[#2E5F8A] text-xs font-semibold mb-6 uppercase tracking-widest">
+            18 Services
+          </div>
+          <h1 className="font-[var(--font-outfit)] font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#1A1A2E] mb-6 leading-tight">
+            Software Development Services for{" "}
+            <span className="text-[#2E5F8A]">Startups & Enterprises</span>
+          </h1>
+          <p className="text-[#6B7280] text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+            From your first MVP to a production-grade SaaS platform — we build, automate, and scale the software your business runs on.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="https://calendly.com/audax-ventures/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#2E5F8A] text-white font-bold hover:bg-[#3A7BD5] transition-colors"
+            >
+              Book a Free Strategy Call <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-[#2E5F8A] text-[#2E5F8A] font-bold hover:bg-[#2E5F8A] hover:text-white transition-colors"
+            >
+              Tell Us About Your Project
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Featured 3 ── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-[10px] font-bold tracking-widest uppercase text-[#2E5F8A] mb-3">Where Most Projects Start</p>
+            <h2 className="font-[var(--font-outfit)] font-extrabold text-3xl sm:text-4xl text-[#1A1A2E]">
+              Core Services
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {featured.map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${s.gradient} p-8 text-white flex flex-col hover:scale-[1.02] transition-transform duration-300`}
+              >
+                {/* Decorative orb */}
+                <div className="absolute -right-10 -top-10 w-44 h-44 rounded-full bg-white/5 pointer-events-none" />
+
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <span className="text-3xl mb-3 block">{s.icon}</span>
+                    {s.badge && (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/20 text-white uppercase tracking-wider mb-2">
+                        {s.badge}
+                      </span>
+                    )}
+                  </div>
+                  <span className="font-[var(--font-outfit)] font-extrabold text-4xl text-white/10 tabular-nums">
+                    {s.num}
+                  </span>
+                </div>
+
+                <h3 className="font-[var(--font-outfit)] font-extrabold text-xl mb-1">{s.title}</h3>
+                <p className="text-white/50 text-xs font-semibold uppercase tracking-wide mb-3">{s.tagline}</p>
+                <p className="text-white/70 text-sm leading-relaxed mb-6">{s.description}</p>
+
+                <div className="space-y-2 mb-6">
+                  {s.highlights.map((h) => (
+                    <div key={h} className="flex items-center gap-2 text-sm text-white/75">
+                      <CheckCircle2 size={13} className="text-white/50 flex-shrink-0" />
+                      {h}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-auto flex items-center justify-between">
+                  <div className="bg-white/10 rounded-xl px-4 py-2.5 text-center">
+                    <p className="font-[var(--font-outfit)] font-extrabold text-lg text-white leading-none">{s.stat.value}</p>
+                    <p className="text-white/45 text-[10px] mt-0.5">{s.stat.label}</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-white/80 group-hover:text-white group-hover:gap-3 transition-all">
+                    Full details <ArrowRight size={14} />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why Audax strip ── */}
+      <section className="py-12 bg-[#2E5F8A]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {whyUs.map((w) => (
+              <div key={w.title} className="text-center">
+                <div className="text-2xl mb-2">{w.icon}</div>
+                <p className="font-[var(--font-outfit)] font-bold text-white text-sm mb-1">{w.title}</p>
+                <p className="text-blue-200 text-xs leading-snug">{w.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── All Services by Category ── */}
+      {categories.map((cat, ci) => (
+        <section key={cat.label} className={ci % 2 === 0 ? "py-20 bg-[#F8F9FA]" : "py-20 bg-white"}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12">
+              <p className="text-[10px] font-bold tracking-widest uppercase text-[#2E5F8A] mb-2">
+                {String(ci + 1).padStart(2, "0")} — Service Category
+              </p>
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+                <div>
+                  <h2 className="font-[var(--font-outfit)] font-extrabold text-2xl sm:text-3xl text-[#1A1A2E]">
+                    {cat.label}
+                  </h2>
+                  <p className="text-[#6B7280] mt-1 text-sm">{cat.description}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {cat.services.map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#2E5F8A] hover:shadow-lg hover:shadow-[#2E5F8A]/6 transition-all duration-250 flex flex-col"
+                >
+                  <div className="text-2xl mb-3">{s.icon}</div>
+                  <h3 className="font-[var(--font-outfit)] font-bold text-[#1A1A2E] text-sm mb-1.5 group-hover:text-[#2E5F8A] transition-colors leading-snug">
+                    {s.title}
+                  </h3>
+                  <p className="text-[#6B7280] text-xs leading-relaxed mb-4 flex-1">{s.tagline}</p>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#2E5F8A] group-hover:gap-2.5 transition-all">
+                    Learn more <ArrowRight size={12} />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* ── Not sure? CTA ── */}
+      <section className="py-20 bg-[#1A1A2E]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-[var(--font-outfit)] font-extrabold text-2xl sm:text-3xl text-white mb-4">
+            Not Sure Which Service You Need?
+          </h2>
+          <p className="text-gray-400 leading-relaxed mb-8">
+            Book a free 30-minute call. We&apos;ll listen to what you&apos;re building, ask the right questions, and tell you exactly where to start — no pitch, no pressure.
+          </p>
+          <Link
+            href="https://calendly.com/audax-ventures/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#2E5F8A] text-white font-bold hover:bg-[#3A7BD5] transition-colors"
+          >
+            Book a Free Strategy Call <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      <CTABanner />
+    </>
+  );
+}

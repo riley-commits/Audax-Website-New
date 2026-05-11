@@ -366,7 +366,7 @@ export default function ServicesGrid() {
 
             {/* View all services */}
             <Link
-              href="/services/mvp-development"
+              href="/services"
               className="mt-1 flex items-center justify-center gap-2 px-5 py-3 rounded-2xl border border-dashed border-[#2E5F8A]/30 text-sm font-semibold text-[#2E5F8A] hover:border-[#2E5F8A] hover:bg-[#2E5F8A]/5 transition-all"
             >
               View all 18 services <ArrowRight size={14} />
