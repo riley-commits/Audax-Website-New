@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Rocket, Cloud, Settings, ArrowRight, Check, ChevronRight } from "lucide-react";
+import { Rocket, Cloud, BrainCircuit, ArrowRight, Check, ChevronRight } from "lucide-react";
 
 // ── Per-service right-panel visuals ─────────────────────────────────────────
 
@@ -113,54 +113,42 @@ function SaaSVisual() {
   );
 }
 
-function InternalVisual() {
-  const before = ["📊 Spreadsheet tracking", "📧 Email approvals", "📋 Paper forms", "🔁 Manual data entry"];
-  const after  = ["📈 Live dashboards",      "✅ Automated workflows", "📱 Digital forms", "🔗 System integrations"];
+function AIConsultingVisual() {
+  const useCases = [
+    { label: "LLM Integration",       sub: "GPT-4o · Claude · Gemini",          icon: "🤖", delay: 0 },
+    { label: "RAG Pipelines",          sub: "Embeddings · Vector DB · Retrieval", icon: "🔍", delay: 0.08 },
+    { label: "AI Feature Builds",      sub: "Custom models · Fine-tuning",        icon: "⚡", delay: 0.16 },
+    { label: "Workflow Automation",    sub: "Agents · Tool use · Orchestration",  icon: "🔄", delay: 0.24 },
+    { label: "AI Evaluation & Safety", sub: "Evals · Guardrails · Monitoring",    icon: "🛡️", delay: 0.32 },
+  ];
 
   return (
     <div>
-      <p className="text-xs font-bold uppercase tracking-widest text-teal-300 mb-5">
-        Before → After
+      <p className="text-xs font-bold uppercase tracking-widest text-purple-300 mb-5">
+        What We Build
       </p>
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-2.5">Before</p>
-          <div className="space-y-2">
-            {before.map((item, i) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.07, duration: 0.3 }}
-                className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2 border border-white/8"
-              >
-                <span className="text-sm line-through text-white/35 text-xs">{item}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-2.5">After</p>
-          <div className="space-y-2">
-            {after.map((item, i) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.07 + 0.15, duration: 0.3 }}
-                className="flex items-center gap-2 bg-teal-500/20 rounded-lg px-3 py-2 border border-teal-400/25"
-              >
-                <span className="text-white text-xs font-medium">{item}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <div className="space-y-2">
+        {useCases.map((uc) => (
+          <motion.div
+            key={uc.label}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: uc.delay, duration: 0.35 }}
+            className="flex items-center gap-3 bg-white/8 hover:bg-white/12 transition-colors rounded-xl px-4 py-3 border border-white/10"
+          >
+            <span className="text-xl w-7 text-center">{uc.icon}</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-white leading-none mb-0.5">{uc.label}</p>
+              <p className="text-xs text-white/45 truncate">{uc.sub}</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
       <div className="mt-5 pt-5 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
         {[
-          { stat: "60%",  label: "Avg. time saved"  },
-          { stat: "2 wks", label: "Avg. onboarding" },
-          { stat: "100%", label: "IP ownership"     },
+          { stat: "10×",  label: "Faster workflows" },
+          { stat: "6 wks", label: "Avg. time to deploy" },
+          { stat: "100%", label: "Production-ready" },
         ].map((s) => (
           <div key={s.label}>
             <div className="font-[var(--font-outfit)] font-extrabold text-2xl text-white">{s.stat}</div>
@@ -221,25 +209,25 @@ const services = [
   },
   {
     num: "03",
-    icon: Settings,
-    title: "Internal Tools",
-    tagline: "Replace spreadsheets with systems",
+    icon: BrainCircuit,
+    title: "AI Consulting",
+    tagline: "LLM integration, RAG pipelines & AI features",
     description:
-      "Custom internal tools built precisely for your team's workflows — automating the manual work that consumes hours and introduces errors every week.",
-    href: "/services/internal-tools",
+      "We integrate large language models, build RAG pipelines, and ship custom AI features directly into your product or internal stack — practical AI, not proof-of-concept theatre.",
+    href: "/services/ai-consulting",
     badge: null,
-    tabAccent: "text-teal-400",
-    tabActiveBg: "bg-teal-800",
-    panelGradient: "from-teal-950 via-teal-800 to-teal-950",
+    tabAccent: "text-purple-400",
+    tabActiveBg: "bg-purple-800",
+    panelGradient: "from-purple-950 via-purple-800 to-purple-950",
     features: [
-      "Process audit & workflow mapping",
-      "Custom UI/UX design",
-      "Backend logic & integrations",
-      "ERP / CRM connectivity",
-      "Staff training & onboarding",
-      "Ongoing support retainer",
+      "AI opportunity assessment",
+      "LLM selection & integration",
+      "RAG pipeline architecture",
+      "Custom AI feature development",
+      "Prompt engineering & evals",
+      "Ongoing optimisation & monitoring",
     ],
-    Visual: InternalVisual,
+    Visual: AIConsultingVisual,
   },
 ];
 

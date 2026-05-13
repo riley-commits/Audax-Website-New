@@ -182,6 +182,92 @@ export const solutionsData: SolutionData[] = [
       { q: "How do we get started?", a: "The Audit phase begins with a 2-hour stakeholder alignment workshop followed by a 2-week deep-dive. We can typically begin within 2 weeks of agreement." },
     ],
   },
+  {
+    slug: "sme-ai-implementation",
+    title: "SME AI Implementation",
+    heroTitle: "SME AI Implementation — Practical AI for Small & Mid-Sized Businesses",
+    heroSub:
+      "A three-phase program that takes small and medium-sized businesses from AI curiosity to deployed, measurable AI — without the hype, the bloat, or the six-figure consulting bill.",
+    metaTitle: "SME AI Implementation Program | AI for Small Business Canada | Audax Ventures",
+    metaDescription:
+      "Audax Ventures' SME AI Implementation Program: Assess → Implement → Optimise. Practical AI integration for Canadian SMEs. Book a free AI readiness call.",
+    description:
+      "AI is no longer just for large enterprises with dedicated data science teams. The tools available today — large language models, automation platforms, and intelligent workflow systems — are accessible and affordable for businesses of any size. The gap isn't capability: it's knowing where to start, how to integrate, and how to measure success. That's exactly what this program delivers.",
+    phases: [
+      {
+        number: 1,
+        name: "Assess",
+        icon: "🔍",
+        description:
+          "We start with a structured AI Readiness Assessment: a deep look at your current workflows, data assets, and operations to identify the highest-ROI opportunities for AI. We don't lead with technology — we lead with your business outcomes. The output is a prioritized AI Opportunity Map that tells you exactly which processes to automate first, what data you need, and what realistic results look like.",
+        duration: "2–3 weeks",
+        deliverables: [
+          "AI Readiness Assessment report",
+          "Workflow and data inventory",
+          "Prioritized AI Opportunity Map (top 3–5 use cases)",
+          "Build vs. buy recommendation for each use case",
+          "ROI projections and timeline estimates",
+          "Executive summary for stakeholder buy-in",
+        ],
+      },
+      {
+        number: 2,
+        name: "Implement",
+        icon: "⚙️",
+        description:
+          "We build and deploy your highest-priority AI use case — fully integrated into your existing tools and workflows. This might be an AI-powered customer service agent, an internal knowledge base chatbot, an automated document processing pipeline, or a custom LLM integration with your business data. We handle everything from data preparation to deployment and staff training.",
+        duration: "6–14 weeks",
+        deliverables: [
+          "Deployed AI solution (chatbot, automation, or LLM integration)",
+          "Integration with existing tools (CRM, ERP, website, or internal systems)",
+          "Data pipeline and prompt engineering documentation",
+          "Staff training sessions and usage guides",
+          "Performance baseline and KPI tracking setup",
+          "Handoff with full documentation and source access",
+        ],
+      },
+      {
+        number: 3,
+        name: "Optimise",
+        icon: "📈",
+        description:
+          "AI systems improve with use — but only if you're measuring the right things and iterating. In the Optimise phase, we monitor performance, retrain or reprompt as needed, and expand your AI footprint to the next highest-priority use case. Many clients move from one deployed AI tool to a suite of coordinated automations within the first year.",
+        duration: "Ongoing — typically 3–12 months",
+        deliverables: [
+          "Monthly AI performance reviews",
+          "Prompt and model iteration based on real usage data",
+          "Expansion to second and third use cases",
+          "AI governance and responsible use framework",
+          "Team upskilling and prompt engineering coaching",
+          "Quarterly AI roadmap review",
+        ],
+      },
+    ],
+    whoItsFor: [
+      "SME owners and operators who know AI matters but don't know where to start",
+      "Operations managers looking to automate repetitive, high-volume tasks",
+      "Customer service teams overwhelmed by ticket volume and repetitive inquiries",
+      "Professional services firms (legal, accounting, consulting) handling large document volumes",
+      "Retailers and e-commerce businesses looking to personalize at scale",
+      "Any business spending significant time on tasks that could be intelligently automated",
+    ],
+    differentiators: [
+      "We start with your business problem, not a technology pitch",
+      "Fixed-price phases — no runaway consulting bills",
+      "We build integrations that fit your existing stack, not a replacement platform",
+      "Plain-language reporting — no data science jargon",
+      "We train your team so you're not dependent on us to operate the tools",
+      "Practical AI, not proof-of-concept theatre — every use case ships to production",
+    ],
+    faq: [
+      { q: "Do we need a lot of data to use AI?", a: "Not always. Many high-value AI applications — like customer service chatbots, document summarization, and FAQ automation — work well with modest amounts of existing content. Our Assess phase determines exactly what data you have and what's needed before we commit to a build." },
+      { q: "How is this different from using ChatGPT directly?", a: "Generic AI tools are general-purpose. We build integrations that know your business: your products, your customers, your tone, and your workflows. The result is an AI that behaves like a trained team member, not a generic assistant." },
+      { q: "What does it cost?", a: "The Assess phase starts at $6,000. Implementation projects typically range from $18,000 to $55,000 depending on complexity and integration scope. The Optimise retainer starts at $2,500/month. Every phase is scoped and priced before it starts." },
+      { q: "Will our staff lose jobs to AI?", a: "Our goal is to remove the drudgery from your team's workload — not their roles. Most SMEs we work with use AI to handle volume that was previously impossible, freeing their people for higher-value, relationship-driven work." },
+      { q: "How long before we see results?", a: "Most clients see measurable results — reduced ticket response time, faster document processing, or time saved per week — within 4–6 weeks of the Implementation phase kicking off." },
+      { q: "Do you work with specific industries?", a: "Yes. We have particular depth in healthcare, professional services, retail, logistics, and manufacturing — industries with high-volume, repeatable processes that are well-suited to AI augmentation." },
+    ],
+  },
 ];
 
 export function getSolutionBySlug(slug: string): SolutionData | undefined {

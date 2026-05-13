@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import CTABanner from "@/components/layout/CTABanner";
 
 export const metadata: Metadata = {
   title: "Software Development Services | Audax Ventures",
@@ -47,16 +46,16 @@ const featured = [
   },
   {
     num: "03",
-    icon: "⚙️",
-    title: "Internal Tools",
+    icon: "🎯",
+    title: "AI Consulting",
     badge: null,
-    tagline: "Replace spreadsheets with systems",
+    tagline: "LLM integration, RAG pipelines & AI features",
     description:
-      "Custom internal tools built precisely for your team — automating the manual workflows that consume hours and introduce errors every week.",
-    href: "/services/internal-tools",
-    highlights: ["Process audit & workflow mapping", "Custom UI/UX design", "ERP / CRM integration", "Staff training & handoff"],
-    gradient: "from-teal-950 via-teal-800 to-teal-950",
-    stat: { value: "60%", label: "avg. time saved" },
+      "We integrate large language models, build RAG pipelines, and ship custom AI features into your product or internal stack — practical AI that goes to production.",
+    href: "/services/ai-consulting",
+    highlights: ["AI opportunity assessment", "LLM selection & integration", "RAG pipeline architecture", "Prompt engineering & evals"],
+    gradient: "from-purple-950 via-purple-800 to-purple-950",
+    stat: { value: "10×", label: "faster workflows" },
   },
 ];
 
@@ -277,7 +276,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <CTABanner />
     </>
   );
 }

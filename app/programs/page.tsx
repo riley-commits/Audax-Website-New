@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Clock, Lightbulb, Building2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock, Lightbulb, Building2, BrainCircuit } from "lucide-react";
 import CTABanner from "@/components/layout/CTABanner";
 import { solutionsData } from "@/lib/solutions-data";
 
 export const metadata: Metadata = {
   title: "Programs | Audax Ventures",
   description:
-    "Two structured programs built for where you are in your journey — Catalyst for Founders for startups, and Enterprise Innovation Program for corporate teams.",
+    "Three structured programs built for where you are in your journey — Catalyst for Founders, Enterprise Innovation Program, and SME AI Implementation.",
   alternates: { canonical: "https://audaxventures.ca/programs" },
   openGraph: {
     title: "Programs | Audax Ventures",
     description:
-      "Catalyst for Founders and the Enterprise Innovation Program — structured, phased engagements that go beyond a typical development agency.",
+      "Three structured, phased programs — for founders, enterprise teams, and SMEs ready to implement AI. Beyond a typical development agency.",
     url: "https://audaxventures.ca/programs",
   },
 };
@@ -33,6 +33,14 @@ const programMeta = [
     gradient: "from-[#1A1A2E] to-[#2E5F8A]",
     accentColor: "text-[#1A1A2E]",
     accentBg: "bg-[#1A1A2E]/8",
+  },
+  {
+    slug: "sme-ai-implementation",
+    icon: BrainCircuit,
+    badge: "For SMEs",
+    gradient: "from-[#065F46] to-[#059669]",
+    accentColor: "text-[#065F46]",
+    accentBg: "bg-[#065F46]/8",
   },
 ];
 
@@ -55,7 +63,7 @@ export default function ProgramsPage() {
             <span className="text-[#2E5F8A]">A Program Partner</span>
           </h1>
           <p className="text-[#6B7280] text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
-            Two structured, phased programs designed for where you are in your journey. Whether you&apos;re a founder going from idea to traction, or an enterprise team shipping an internal product — we have a program for you.
+            Three structured, phased programs designed for where you are in your journey — whether you&apos;re a founder, an enterprise innovation team, or an SME ready to put AI to work.
           </p>
 
           {/* Jump buttons */}

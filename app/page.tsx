@@ -4,7 +4,6 @@ import HeroSection from "@/components/sections/HeroSection";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import ProcessSteps from "@/components/sections/ProcessSteps";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import BlogPreview from "@/components/sections/BlogPreview";
 import SolutionsOverview from "@/components/sections/SolutionsOverview";
 import StatsBar from "@/components/sections/StatsBar";
 
@@ -35,7 +34,7 @@ const organizationSchema = {
     url: "https://calendly.com/audax-ventures/30min",
   },
   sameAs: [
-    "https://linkedin.com/company/audaxventures",
+    "https://www.linkedin.com/company/audax-ventures-inc/",
     "https://twitter.com/audaxventures",
   ],
 };
@@ -53,7 +52,6 @@ export default function HomePage() {
       <SolutionsOverview />
       <ProcessSteps />
       <TestimonialsSection />
-      <BlogPreview />
       <CTABanner />
     </>
   );

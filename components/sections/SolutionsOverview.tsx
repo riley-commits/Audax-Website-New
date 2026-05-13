@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Lightbulb, Building2 } from "lucide-react";
+import { ArrowRight, Lightbulb, Building2, BrainCircuit } from "lucide-react";
 
 const programs = [
   {
@@ -61,6 +61,34 @@ const programs = [
       },
     ],
     stat: { value: "100%", label: "IP ownership" },
+  },
+  {
+    icon: BrainCircuit,
+    badge: "For SMEs",
+    title: "SME AI Implementation",
+    description:
+      "Practical AI — deployed, measured, and built into your workflows — without the hype or the six-figure consulting bill.",
+    href: "/programs/sme-ai-implementation",
+    gradient: "from-[#052E16] via-[#065F46] to-[#052E16]",
+    accentColor: "#34D399",
+    phases: [
+      {
+        name: "Assess",
+        duration: "2–3 wks",
+        deliverables: ["AI Readiness report", "Opportunity Map", "ROI projections"],
+      },
+      {
+        name: "Implement",
+        duration: "6–14 wks",
+        deliverables: ["Deployed AI solution", "Tool integrations", "Staff training"],
+      },
+      {
+        name: "Optimise",
+        duration: "3–12 mo",
+        deliverables: ["Performance reviews", "Model iteration", "Use case expansion"],
+      },
+    ],
+    stat: { value: "40%", label: "avg. efficiency gain" },
   },
 ];
 
@@ -210,7 +238,7 @@ export default function SolutionsOverview() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {programs.map((program, i) => (
             <ProgramCard key={program.title} program={program} delay={i * 0.15} />
           ))}
