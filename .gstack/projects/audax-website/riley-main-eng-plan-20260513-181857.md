@@ -15,6 +15,18 @@ Source of structure: https://audax-website-beige.vercel.app/
 | D2 | Content management | MDX in repo (`/content/*.mdx`), version-controlled, static at build |
 | D3 | Two-door canonical URLs | `/founders`, `/ai-for-sme`. Old `/programs/catalyst-for-founders` and `/programs/sme-ai-implementation` retired (no 301 — not yet indexed in production) |
 
+## Scope Revision — Lane B (2026-05-14)
+
+The original Lane B (MDX migration) was scoped against a greenfield assumption. The actual codebase already has a working typed-TS content pipeline: 53 entries across `lib/services-data.ts` (18), `lib/industries-data.ts` (11), `lib/blog-data.ts` (11), `lib/guides-data.ts` (10), `lib/solutions-data.ts` (3), each with rich nested interfaces (FAQs, process steps, related items, SEO meta). Existing `[slug]` routes already use `generateStaticParams()` and inject FAQ/Breadcrumb JSON-LD.
+
+Full MDX migration would mean rewriting ~50,000 lines of structured TS to MDX, refactoring every page-content component, and taking real risk against a live deploy — not Phase 1 shaped.
+
+**Revised Lane B: formalize the existing contract with Zod.** Adds `lib/content-schema.ts` (Zod schemas matching the existing interfaces) + `scripts/validate-content.ts` (build-time validator, wired as npm prebuild). Build fails on structural drift; soft warnings (e.g. meta description length) surface SEO issues without blocking.
+
+D2 (MDX in repo) is deferred. May revisit for case studies or other new content types in a future PR. The existing typed-TS pattern stays.
+
+**Initial validator output:** all 53 entries pass structural validation. 15 soft warnings (meta descriptions over 160 chars on industries, blog posts, and one guide) — not blocking, captured as content cleanup TODO.
+
 ## Stack (confirmed by Riley 2026-05-13)
 
 - **Framework:** Next.js 16, App Router.
