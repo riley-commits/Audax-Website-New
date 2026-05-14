@@ -3,6 +3,18 @@
 :root {
   --background: #FAFAF8;
   --foreground: #1A1A2E;
+
+  /* Design spec tokens (locked by /plan-design-review 2026-05-13) */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F8F9FA;
+  --color-fg: #1A1A2E;
+  --color-fg-muted: #5A6478;
+  --color-border: #E2E5EB;
+  --color-accent: #2E5F8A;
+  --color-accent-hover: #1A3A5C;
+  --color-accent-bright: #3A7BD5;
+  --color-accent-secondary: #065F46;
+  --color-logo-grey: #7A8190;
 }
 
 html {
