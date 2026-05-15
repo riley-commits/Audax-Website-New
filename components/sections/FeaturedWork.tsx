@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 /**
@@ -24,6 +25,7 @@ interface FeaturedProject {
   description: string;
   href: string;
   accentVar: string; // CSS variable for accent
+  logo?: { src: string; width: number; height: number };
 }
 
 const projects: FeaturedProject[] = [
@@ -35,6 +37,7 @@ const projects: FeaturedProject[] = [
       "Fintech platform built from scoping through launch. Validated user flow + Stripe integration + production deployment.",
     href: "/services/mvp-development",
     accentVar: "--color-accent",
+    logo: { src: "/logos/fundeze.png", width: 200, height: 56 },
   },
   {
     metric: "Net-new",
@@ -44,6 +47,7 @@ const projects: FeaturedProject[] = [
       "Operations platform for a Manitoba renewable-energy venture. We built the technology stack from scratch alongside fractional COO advisory.",
     href: "/programs/catalyst-for-founders",
     accentVar: "--color-accent-secondary",
+    logo: { src: "/logos/h2mb.avif", width: 200, height: 56 },
   },
   {
     metric: "Full IP",
@@ -92,9 +96,21 @@ export function FeaturedWork() {
                     {p.metricLabel}
                   </div>
                 </div>
-                <div className="font-[family-name:var(--font-outfit)] text-xl font-semibold tracking-tight text-[var(--color-fg)] mb-3">
-                  {p.client}
-                </div>
+                {p.logo ? (
+                  <div className="mb-3 flex items-center h-10">
+                    <Image
+                      src={p.logo.src}
+                      alt={`${p.client} logo`}
+                      width={p.logo.width}
+                      height={p.logo.height}
+                      className="h-10 w-auto object-contain object-left"
+                    />
+                  </div>
+                ) : (
+                  <div className="font-[family-name:var(--font-outfit)] text-xl font-semibold tracking-tight text-[var(--color-fg)] mb-3">
+                    {p.client}
+                  </div>
+                )}
                 <p className="text-sm leading-relaxed text-[var(--color-fg-muted)] mb-8">
                   {p.description}
                 </p>
