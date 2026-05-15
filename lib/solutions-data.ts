@@ -93,7 +93,6 @@ export const solutionsData: SolutionData[] = [
       "Founder alumni network connects you with other Catalyst graduates",
     ],
     faq: [
-      { q: "What's the minimum budget for Catalyst?", a: "The Validate phase starts at $8,000. The Launch phase (MVP build) typically ranges from $25,000 to $80,000. We structure payments by phase so you're never paying for work that hasn't started." },
       { q: "How is Catalyst different from hiring a development agency?", a: "Most agencies take a brief and build what you ask for. We challenge your assumptions, help you scope correctly, and act as a genuine product partner. We've seen what works and we'll tell you when something won't." },
       { q: "Do you take equity?", a: "Our primary model is fee-based. In select cases, we'll discuss a reduced-fee + equity arrangement with early-stage founders, but this is evaluated case by case." },
       { q: "What if I'm still in the idea stage?", a: "Perfect — that's exactly when to start. The Validate phase is designed for founders who have an idea but haven't built anything yet." },
