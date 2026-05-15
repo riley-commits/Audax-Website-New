@@ -98,7 +98,7 @@ export default function AiForSmePage() {
           </FadeIn>
           <FadeIn delay={0.12}>
             <p className="text-xl leading-relaxed text-[var(--color-fg-muted)] max-w-[52ch]">
-              We audit your business, write a ranked AI roadmap, then build it. Canadian partner. No hype, no jargon, no offshore handoff. For SMEs ready to do AI properly — not just talk about it.
+              Most AI consultants will sell you a strategy deck and disappear long before anything actually ships in your business. We take a different approach by auditing your operations, ranking the AI opportunities by realistic return on investment, and then building the systems that move the metrics that matter to you. Our team is Canadian and stays involved through implementation, so you never end up with a beautiful plan and no one left to execute it.
             </p>
           </FadeIn>
         </div>
