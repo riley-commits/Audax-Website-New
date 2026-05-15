@@ -40,7 +40,7 @@ const clientLogos = [
 // CountUp metrics: SSR renders `display`, animation runs after in-view.
 const metrics = [
   { value: 50,   display: "50+",  suffix: "+",  label: "Projects shipped" },
-  { value: 16,   display: "8–16", suffix: "",   label: "Weeks to MVP"     },
+  { value: 8,    display: "8",    suffix: "",   label: "Weeks to MVP"     },
   { value: 98,   display: "98%",  suffix: "%",  label: "On-time delivery" },
 ];
 
