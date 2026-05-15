@@ -6,10 +6,16 @@ import Link from "next/link";
  * Visual + interaction spec locked in design-spec.md:
  * - Typographic doors with eyebrow + headline + supporting line + arrow CTA.
  * - Full-card click target with aria-label.
- * - Hover: border color shift + 8px arrow translate. No drop shadow.
+ * - Hover: border color shift to audience accent + 8px arrow translate.
+ *   No drop shadow.
  * - Focus: 2px outline at 4px offset in accent color.
- * - Mobile: cards stack at <768px (handled here via Tailwind md: breakpoint).
- * - prefers-reduced-motion honored via transition-* + motion-safe utilities.
+ * - Mobile: cards stack at <768px (handled via Tailwind md: breakpoint).
+ * - prefers-reduced-motion honored via motion-safe utilities.
+ *
+ * Audience-specific accents (added in polish pass):
+ * - Founders door → slate blue (--color-accent)
+ * - AI-for-SME door → emerald (--color-accent-secondary)
+ * Continuity with the hero, where "Founders" is slate and "SMEs" is emerald.
  */
 
 interface Door {
@@ -19,6 +25,8 @@ interface Door {
   cta: string;
   href: string;
   ariaLabel: string;
+  accentVar: string; // CSS variable name for this door's accent color
+  accentTintRgb: string; // rgb triplet for the subtle hover tint
 }
 
 const doors: Door[] = [
@@ -30,6 +38,8 @@ const doors: Door[] = [
     cta: "See how we work",
     href: "/founders",
     ariaLabel: "For founders: I'm building a new product",
+    accentVar: "--color-accent",
+    accentTintRgb: "46, 95, 138",
   },
   {
     eyebrow: "For SME operators",
@@ -40,6 +50,8 @@ const doors: Door[] = [
     href: "/ai-for-sme",
     ariaLabel:
       "For SME operators: I'm bringing AI into my business",
+    accentVar: "--color-accent-secondary",
+    accentTintRgb: "6, 95, 70",
   },
 ];
 
@@ -52,10 +64,33 @@ export default function TwoDoorPicker() {
             key={d.href}
             href={d.href}
             aria-label={d.ariaLabel}
-            className="group bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-sm p-8 md:p-12 min-h-[280px] md:min-h-[320px] flex flex-col justify-between transition-colors duration-200 ease-out hover:border-[var(--color-fg)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-4 no-underline"
+            className="group/door relative bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-sm p-8 md:p-12 min-h-[280px] md:min-h-[320px] flex flex-col justify-between transition-all duration-300 ease-out focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 no-underline overflow-hidden"
+            style={
+              {
+                ["--door-accent" as string]: `var(${d.accentVar})`,
+                ["--door-accent-tint" as string]: `rgba(${d.accentTintRgb}, 0.04)`,
+              } as React.CSSProperties
+            }
           >
-            <div>
-              <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-fg-muted)] mb-6">
+            {/* Subtle corner glow on hover — accent color, 4% opacity radial.
+                Sits behind content via -z-10. */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-300 ease-out group-hover/door:opacity-100"
+              style={{
+                background:
+                  "radial-gradient(600px 400px at 100% 0%, var(--door-accent-tint), transparent 65%)",
+              }}
+            />
+
+            {/* Top accent bar — invisible by default, slides in on hover. */}
+            <div
+              aria-hidden="true"
+              className="absolute top-0 left-0 h-[2px] w-0 bg-[var(--door-accent)] transition-all duration-300 ease-out group-hover/door:w-full"
+            />
+
+            <div className="relative">
+              <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--door-accent)] mb-6 transition-colors duration-300">
                 {d.eyebrow}
               </div>
               <h2 className="font-[family-name:var(--font-outfit)] text-[1.875rem] md:text-[2.25rem] font-semibold leading-tight tracking-tight text-[var(--color-fg)] mb-4 max-w-[14ch]">
@@ -65,11 +100,11 @@ export default function TwoDoorPicker() {
                 {d.support}
               </p>
             </div>
-            <span className="inline-flex items-center gap-2 text-base font-medium text-[var(--color-fg)]">
+            <span className="relative inline-flex items-center gap-2 text-base font-medium text-[var(--color-fg)] transition-colors duration-300 group-hover/door:text-[var(--door-accent)]">
               {d.cta}
               <span
                 aria-hidden="true"
-                className="inline-block transition-transform duration-200 ease-out motion-safe:group-hover:translate-x-2"
+                className="inline-block transition-transform duration-200 ease-out motion-safe:group-hover/door:translate-x-2"
               >
                 →
               </span>
