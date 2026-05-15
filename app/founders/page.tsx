@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getSolutionBySlug } from "@/lib/solutions-data";
 import { getServiceBySlug } from "@/lib/services-data";
+import { FadeIn } from "@/components/ui/FadeIn";
 
 export const metadata: Metadata = {
   title: "For Founders | MVP Build, Fractional Engineering, Advisory",
@@ -80,17 +81,33 @@ export default function FoundersPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* HERO */}
-      <section className="mx-auto max-w-[1280px] px-6 md:px-12 pt-16 md:pt-24 pb-16">
-        <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-fg-muted)] mb-6">
-          For founders
+      {/* HERO — slate-blue glow signals "founders" audience accent. */}
+      <section className="relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(900px 600px at 90% 0%, rgba(46,95,138,0.10), transparent 60%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1280px] px-6 md:px-12 pt-20 md:pt-32 pb-16">
+          <FadeIn>
+            <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-accent)] mb-8">
+              For founders
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.05}>
+            <h1 className="font-[family-name:var(--font-outfit)] text-[clamp(2.5rem,5.5vw,5rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-fg)] max-w-[18ch] mb-8">
+              MVPs that don&apos;t embarrass you when you raise the next round.
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.12}>
+            <p className="text-xl leading-relaxed text-[var(--color-fg-muted)] max-w-[52ch]">
+              We build production-grade MVPs in 8–16 weeks for funded Canadian founders. Fractional engineering leadership, real advisory, and full IP transfer. We sit on the same side of the table.
+            </p>
+          </FadeIn>
         </div>
-        <h1 className="font-[family-name:var(--font-outfit)] text-[clamp(2.5rem,5.5vw,5rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-fg)] max-w-[18ch] mb-8">
-          MVPs that don&apos;t embarrass you when you raise the next round.
-        </h1>
-        <p className="text-xl leading-relaxed text-[var(--color-fg-muted)] max-w-[52ch]">
-          We build production-grade MVPs in 8–16 weeks for funded Canadian founders. Fractional engineering leadership, real advisory, and full IP transfer. We sit on the same side of the table.
-        </p>
       </section>
 
       {/* TRUST STRIP */}
@@ -121,34 +138,38 @@ export default function FoundersPage() {
 
       {/* OFFERINGS */}
       <section className="mx-auto max-w-[1280px] px-6 md:px-12 py-24">
-        <h2 className="font-[family-name:var(--font-outfit)] text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[20ch] mb-16">
-          Three ways we work with founders.
-        </h2>
+        <FadeIn>
+          <h2 className="font-[family-name:var(--font-outfit)] text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[20ch] mb-16">
+            Three ways we work with founders.
+          </h2>
+        </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {offerings.map((o) => (
-            <div key={o.eyebrow} className="flex flex-col">
-              <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-fg-muted)] mb-4">
-                {o.eyebrow}
-              </div>
-              <h3 className="font-[family-name:var(--font-outfit)] text-2xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] mb-4">
-                {o.title}
-              </h3>
-              <p className="text-base leading-relaxed text-[var(--color-fg-muted)] mb-6 flex-1">
-                {o.body}
-              </p>
-              <Link
-                href={o.href}
-                className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] no-underline group/cta"
-              >
-                {o.cta}
-                <span
-                  aria-hidden="true"
-                  className="inline-block transition-transform duration-200 ease-out motion-safe:group-hover/cta:translate-x-1"
+          {offerings.map((o, i) => (
+            <FadeIn key={o.eyebrow} delay={i * 0.08}>
+              <div className="flex flex-col h-full">
+                <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-accent)] mb-4">
+                  {o.eyebrow}
+                </div>
+                <h3 className="font-[family-name:var(--font-outfit)] text-2xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] mb-4">
+                  {o.title}
+                </h3>
+                <p className="text-base leading-relaxed text-[var(--color-fg-muted)] mb-6 flex-1">
+                  {o.body}
+                </p>
+                <Link
+                  href={o.href}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] no-underline group/cta"
                 >
-                  →
-                </span>
-              </Link>
-            </div>
+                  {o.cta}
+                  <span
+                    aria-hidden="true"
+                    className="inline-block transition-transform duration-200 ease-out motion-safe:group-hover/cta:translate-x-1"
+                  >
+                    →
+                  </span>
+                </Link>
+              </div>
+            </FadeIn>
           ))}
         </div>
       </section>
@@ -156,31 +177,35 @@ export default function FoundersPage() {
       {/* CATALYST PHASES */}
       <section className="border-t border-[var(--color-border)] py-24 bg-[var(--color-bg-alt)]">
         <div className="mx-auto max-w-[1280px] px-6 md:px-12">
-          <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-fg-muted)] mb-6">
-            The catalyst program
-          </div>
-          <h2 className="font-[family-name:var(--font-outfit)] text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[28ch] mb-4">
-            From validated idea to revenue-generating product.
-          </h2>
-          <p className="text-lg leading-relaxed text-[var(--color-fg-muted)] max-w-[58ch] mb-16">
-            {program.heroSub}
-          </p>
+          <FadeIn>
+            <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-accent)] mb-6">
+              The catalyst program
+            </div>
+            <h2 className="font-[family-name:var(--font-outfit)] text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[28ch] mb-4">
+              From validated idea to revenue-generating product.
+            </h2>
+            <p className="text-lg leading-relaxed text-[var(--color-fg-muted)] max-w-[58ch] mb-16">
+              {program.heroSub}
+            </p>
+          </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {program.phases.map((phase) => (
-              <div key={phase.number} className="border-t-2 border-[var(--color-accent)] pt-6">
-                <div className="font-[family-name:var(--font-outfit)] text-5xl font-bold leading-none text-[var(--color-fg)] mb-4 tabular-nums">
-                  0{phase.number}
+            {program.phases.map((phase, i) => (
+              <FadeIn key={phase.number} delay={i * 0.08}>
+                <div className="border-t-2 border-[var(--color-accent)] pt-6">
+                  <div className="font-[family-name:var(--font-outfit)] text-5xl font-bold leading-none text-[var(--color-fg)] mb-4 tabular-nums">
+                    0{phase.number}
+                  </div>
+                  <h3 className="font-[family-name:var(--font-outfit)] text-xl font-semibold tracking-tight text-[var(--color-fg)] mb-2">
+                    {phase.name}
+                  </h3>
+                  <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-fg-muted)] mb-4">
+                    {phase.duration}
+                  </div>
+                  <p className="text-base leading-relaxed text-[var(--color-fg-muted)]">
+                    {phase.description}
+                  </p>
                 </div>
-                <h3 className="font-[family-name:var(--font-outfit)] text-xl font-semibold tracking-tight text-[var(--color-fg)] mb-2">
-                  {phase.name}
-                </h3>
-                <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-fg-muted)] mb-4">
-                  {phase.duration}
-                </div>
-                <p className="text-base leading-relaxed text-[var(--color-fg-muted)]">
-                  {phase.description}
-                </p>
-              </div>
+              </FadeIn>
             ))}
           </div>
           <div className="mt-12">
@@ -202,57 +227,80 @@ export default function FoundersPage() {
 
       {/* RELATED SERVICES */}
       <section className="mx-auto max-w-[1280px] px-6 md:px-12 py-24">
-        <h2 className="font-[family-name:var(--font-outfit)] text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[24ch] mb-16">
-          Services founders book most.
-        </h2>
+        <FadeIn>
+          <h2 className="font-[family-name:var(--font-outfit)] text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[24ch] mb-16">
+            Services founders book most.
+          </h2>
+        </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredServices.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="group/svc bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-sm p-8 no-underline transition-colors duration-200 ease-out hover:border-[var(--color-fg)]"
-            >
-              <h3 className="font-[family-name:var(--font-outfit)] text-xl font-semibold tracking-tight text-[var(--color-fg)] mb-3">
-                {service.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-[var(--color-fg-muted)] mb-6 line-clamp-3">
-                {service.heroSub}
-              </p>
-              <span className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-fg)]">
-                Learn more
-                <span
+          {featuredServices.map((service, i) => (
+            <FadeIn key={service.slug} delay={i * 0.06}>
+              <Link
+                href={`/services/${service.slug}`}
+                className="group/svc relative block bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-sm p-8 no-underline transition-all duration-300 ease-out hover:border-[var(--color-accent)] overflow-hidden h-full"
+              >
+                <div
                   aria-hidden="true"
-                  className="inline-block transition-transform duration-200 ease-out motion-safe:group-hover/svc:translate-x-1"
-                >
-                  →
+                  className="absolute top-0 left-0 h-[2px] w-0 bg-[var(--color-accent)] transition-all duration-300 ease-out group-hover/svc:w-full"
+                />
+                <h3 className="font-[family-name:var(--font-outfit)] text-xl font-semibold tracking-tight text-[var(--color-fg)] mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-[var(--color-fg-muted)] mb-6 line-clamp-3">
+                  {service.heroSub}
+                </p>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-fg)] transition-colors duration-300 group-hover/svc:text-[var(--color-accent)]">
+                  Learn more
+                  <span
+                    aria-hidden="true"
+                    className="inline-block transition-transform duration-200 ease-out motion-safe:group-hover/svc:translate-x-1"
+                  >
+                    →
+                  </span>
                 </span>
-              </span>
-            </Link>
+              </Link>
+            </FadeIn>
           ))}
         </div>
       </section>
 
       {/* CTA + MAILTO */}
-      <section className="border-t border-[var(--color-border)] py-32 bg-[var(--color-bg)]">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12">
-          <h2 className="font-[family-name:var(--font-outfit)] text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[28ch] mb-8">
-            Funded and ready to build? Let&apos;s talk.
-          </h2>
-          <a
-            href="https://calendly.com/audax-ventures/30min"
-            className="inline-block bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-7 py-4 rounded-md font-medium text-base transition-colors duration-200 ease-out no-underline"
-          >
-            Book a build consult →
-          </a>
-          <p className="mt-4 text-sm text-[var(--color-fg-muted)]">
-            Or email{" "}
+      <section className="relative border-t border-[var(--color-border)] py-32 bg-[var(--color-bg)] overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(700px 400px at 100% 50%, rgba(46,95,138,0.08), transparent 60%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1280px] px-6 md:px-12">
+          <FadeIn>
+            <h2 className="font-[family-name:var(--font-outfit)] text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[28ch] mb-8">
+              Funded and ready to build? Let&apos;s talk.
+            </h2>
             <a
-              href="mailto:hello@audaxventures.ca"
-              className="underline hover:text-[var(--color-fg)]"
+              href="https://calendly.com/audax-ventures/30min"
+              className="group inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-7 py-4 rounded-md font-medium text-base transition-all duration-200 ease-out no-underline shadow-sm hover:shadow-md"
             >
-              hello@audaxventures.ca
+              Book a build consult
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-200 ease-out motion-safe:group-hover:translate-x-1"
+              >
+                →
+              </span>
             </a>
-          </p>
+            <p className="mt-4 text-sm text-[var(--color-fg-muted)]">
+              Or email{" "}
+              <a
+                href="mailto:hello@audaxventures.ca"
+                className="underline hover:text-[var(--color-fg)]"
+              >
+                hello@audaxventures.ca
+              </a>
+            </p>
+          </FadeIn>
         </div>
       </section>
     </>
