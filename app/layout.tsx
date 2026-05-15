@@ -71,7 +71,7 @@ const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
-    email: "hello@audaxventures.ca",
+    email: "info@audaxventures.ca",
     url: "https://calendly.com/audax-ventures/30min",
   },
   sameAs: [

@@ -263,10 +263,10 @@ export default function HomePage() {
             <p className="mt-6 text-sm text-[var(--color-fg-muted)]">
               Or email{" "}
               <a
-                href="mailto:hello@audaxventures.ca"
+                href="mailto:info@audaxventures.ca"
                 className="underline hover:text-[var(--color-fg)]"
               >
-                hello@audaxventures.ca
+                info@audaxventures.ca
               </a>
             </p>
           </FadeIn>
