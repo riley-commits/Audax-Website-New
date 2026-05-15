@@ -99,7 +99,7 @@ export default function FoundersPage() {
           </FadeIn>
           <FadeIn delay={0.05}>
             <h1 className="font-[family-name:var(--font-outfit)] text-[clamp(2.5rem,5.5vw,5rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-fg)] max-w-[18ch] mb-8">
-              MVPs that don&apos;t embarrass you when you raise the next round.
+              MVP Development Studio for Funded Canadian Founders.
             </h1>
           </FadeIn>
           <FadeIn delay={0.12}>
