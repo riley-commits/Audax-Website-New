@@ -146,15 +146,15 @@ export default function HomePage() {
           {[...clientLogos, ...clientLogos].map((logo, i) => (
             <div
               key={`${logo.src}-${i}`}
-              className="flex-shrink-0 mx-8 flex items-center opacity-60 hover:opacity-100 transition-opacity duration-300"
-              style={{ height: 32 }}
+              className="flex-shrink-0 mx-8 flex items-center"
+              style={{ height: 40 }}
             >
               <Image
                 src={logo.src}
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="h-8 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                className="h-10 w-auto object-contain"
               />
             </div>
           ))}
