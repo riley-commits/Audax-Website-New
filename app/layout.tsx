@@ -51,12 +51,45 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+// Organization JSON-LD — emitted on every page so Google has a consistent
+// Organization graph regardless of entry point. Page-level pages still emit
+// additional schemas (BreadcrumbList, Service, FAQ) on top of this.
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Audax Ventures",
+  url: "https://audaxventures.ca",
+  logo: "https://audaxventures.ca/audax-icon.png",
+  description:
+    "Canadian software studio helping funded founders ship MVPs and helping SMEs bring AI into their business.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Winnipeg",
+    addressRegion: "MB",
+    addressCountry: "CA",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: "hello@audaxventures.ca",
+    url: "https://calendly.com/audax-ventures/30min",
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/audax-ventures-inc/",
+    "https://twitter.com/audaxventures",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen flex flex-col font-[var(--font-inter)] bg-white text-[#1A1A2E]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
