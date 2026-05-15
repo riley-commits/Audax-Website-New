@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import TwoDoorPicker from "@/components/sections/TwoDoorPicker";
+import { AnimatedHero } from "@/components/sections/AnimatedHero";
+import { FeaturedWork } from "@/components/sections/FeaturedWork";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { CountUp } from "@/components/ui/CountUp";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const metadata: Metadata = {
   title:
@@ -65,43 +68,68 @@ const testimonials = [
   },
 ];
 
+// Headline word chunks. Colored spans stay self-contained so the
+// AnimatedHero wrapper animates each chunk as one unit.
+const headlineChunks = [
+  "Canadian",
+  "Software",
+  "Studio",
+  "for",
+  <span key="founders" className="text-[var(--color-accent)]">Founders</span>,
+  "and",
+  <span key="smes" className="text-[var(--color-accent-secondary)]">SMEs</span>,
+  ".",
+];
+
 export default function HomePage() {
   return (
     <>
-      {/* HERO — subtle slate-blue glow in top-right + warm-white wash to add depth without slop. */}
-      <section className="relative overflow-hidden">
-        {/* Decorative gradient layer — kept subtle (≤6% opacity), no decoration shapes. */}
+      {/* HERO — cinematic, ~85% viewport on first paint. Animated entrance. */}
+      <section className="relative overflow-hidden min-h-[88vh] flex items-center">
+        {/* Decorative gradient — more pronounced than the polish pass. */}
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(900px 600px at 90% 0%, rgba(58,123,213,0.08), transparent 60%), radial-gradient(700px 500px at 0% 100%, rgba(46,95,138,0.05), transparent 55%)",
+              "radial-gradient(1100px 700px at 90% -10%, rgba(58,123,213,0.14), transparent 60%), radial-gradient(800px 600px at -10% 110%, rgba(6,95,70,0.08), transparent 55%), radial-gradient(600px 400px at 50% 50%, rgba(46,95,138,0.03), transparent 70%)",
           }}
         />
-        <div className="relative mx-auto max-w-[1280px] px-6 md:px-12 pt-20 md:pt-32 pb-12">
-          <FadeIn>
-            <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-[var(--color-fg-muted)] mb-8">
-              Winnipeg, Manitoba · Working coast to coast
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.05}>
-            <h1 className="font-[family-name:var(--font-outfit)] text-[clamp(2.5rem,6vw,6rem)] font-bold leading-[1.0] tracking-tight text-[var(--color-fg)] max-w-[14ch] mb-8">
-              Canadian Software Studio for{" "}
-              <span className="text-[var(--color-accent)]">Founders</span> and{" "}
-              <span className="text-[var(--color-accent-secondary)]">SMEs</span>.
-            </h1>
-          </FadeIn>
-          <FadeIn delay={0.12}>
-            <p className="text-xl leading-relaxed text-[var(--color-fg-muted)] max-w-[50ch]">
-              We build the products you can&apos;t, and audit the AI you should.
-            </p>
-          </FadeIn>
+        {/* Subtle grid pattern — adds texture without distraction. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(26,26,46,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(26,26,46,0.5) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            maskImage:
+              "radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 80%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1280px] w-full px-6 md:px-12 py-20 md:py-32">
+          <AnimatedHero
+            eyebrow="Winnipeg, Manitoba · Working coast to coast"
+            headline={headlineChunks}
+            subhead={
+              <>We build the products you can&apos;t, and audit the AI you should.</>
+            }
+          />
+        </div>
+        {/* Scroll cue */}
+        <div
+          aria-hidden="true"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--color-fg-muted)]"
+        >
+          <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-[10px] font-medium tracking-[0.18em] uppercase">
+            Scroll
+          </div>
+          <div className="w-px h-8 bg-[var(--color-border)] animate-pulse" />
         </div>
       </section>
 
       {/* TWO-DOOR PICKER */}
-      <FadeIn delay={0.18}>
+      <FadeIn>
         <TwoDoorPicker />
       </FadeIn>
 
@@ -157,26 +185,46 @@ export default function HomePage() {
         </FadeIn>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="border-t border-[var(--color-border)] py-24 bg-[var(--color-bg-alt)]">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+      {/* FEATURED WORK — outcome-led project cards. */}
+      <FeaturedWork />
+
+      {/* TESTIMONIALS — dark section for visual contrast. */}
+      <section className="relative py-32 overflow-hidden" style={{ background: "#0E0E1A" }}>
+        {/* Subtle accent glow */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(800px 500px at 100% 0%, rgba(58,123,213,0.10), transparent 60%), radial-gradient(700px 500px at 0% 100%, rgba(6,95,70,0.06), transparent 55%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1280px] px-6 md:px-12">
+          <FadeIn>
+            <div className="font-[family-name:var(--font-jetbrains-mono),ui-monospace,SFMono-Regular,Menlo,monospace] text-xs font-medium tracking-[0.12em] uppercase text-white/40 text-center mb-4">
+              In their words
+            </div>
+            <h2 className="font-[family-name:var(--font-outfit)] text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-white max-w-[24ch] mx-auto text-center mb-24">
+              The work speaks for itself. But sometimes, so do they.
+            </h2>
+          </FadeIn>
           {testimonials.map((t, i) => (
-            <FadeIn key={i} delay={i * 0.05}>
+            <FadeIn key={i} delay={i * 0.06}>
               <div
-                className={`max-w-[800px] mx-auto ${i < testimonials.length - 1 ? "mb-24 pb-24 border-b border-[var(--color-border)]" : ""}`}
+                className={`max-w-[800px] mx-auto ${i < testimonials.length - 1 ? "mb-20 pb-20 border-b border-white/10" : ""}`}
               >
                 <span
                   aria-hidden="true"
-                  className="block font-[family-name:var(--font-outfit)] text-6xl font-bold leading-none text-[var(--color-accent)] mb-4 select-none"
+                  className="block font-[family-name:var(--font-outfit)] text-7xl md:text-8xl font-bold leading-none text-[var(--color-accent-bright)] mb-4 select-none"
                 >
                   &ldquo;
                 </span>
-                <p className="text-2xl italic leading-snug text-[var(--color-fg)] mb-6">
+                <p className="text-2xl md:text-3xl italic leading-snug text-white mb-8">
                   {t.quote}
                 </p>
-                <p className="text-sm text-[var(--color-fg)]">
+                <p className="text-sm text-white/90">
                   <strong className="font-semibold">{t.name}</strong>{" "}
-                  <span className="text-[var(--color-fg-muted)]">— {t.role}</span>
+                  <span className="text-white/50">— {t.role}</span>
                 </p>
               </div>
             </FadeIn>
@@ -184,24 +232,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FINAL CTA + MAILTO FALLBACK */}
-      <section className="relative border-t border-[var(--color-border)] py-32 bg-[var(--color-bg)] overflow-hidden">
+      {/* FINAL CTA — magnetic button + glow. */}
+      <section className="relative border-t border-[var(--color-border)] py-32 md:py-40 bg-[var(--color-bg)] overflow-hidden">
         <div
           aria-hidden="true"
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(700px 400px at 100% 50%, rgba(46,95,138,0.06), transparent 60%)",
+              "radial-gradient(900px 500px at 50% 50%, rgba(46,95,138,0.10), transparent 60%)",
           }}
         />
-        <div className="relative mx-auto max-w-[1280px] px-6 md:px-12">
+        <div className="relative mx-auto max-w-[1280px] px-6 md:px-12 text-center">
           <FadeIn>
-            <h2 className="font-[family-name:var(--font-outfit)] text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-[var(--color-fg)] max-w-[24ch] mb-8">
+            <h2 className="font-[family-name:var(--font-outfit)] text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-[1.05] tracking-tight text-[var(--color-fg)] max-w-[20ch] mx-auto mb-12">
               Ready to build something Canadian builders are proud of?
             </h2>
-            <a
+            <MagneticButton
               href="https://calendly.com/audax-ventures/30min"
-              className="group inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-7 py-4 rounded-md font-medium text-base transition-all duration-200 ease-out no-underline shadow-sm hover:shadow-md"
+              ariaLabel="Book a strategy call"
+              className="group inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-9 py-5 rounded-md font-medium text-lg transition-colors duration-200 ease-out no-underline shadow-lg hover:shadow-xl"
             >
               Book a strategy call
               <span
@@ -210,8 +259,8 @@ export default function HomePage() {
               >
                 →
               </span>
-            </a>
-            <p className="mt-4 text-sm text-[var(--color-fg-muted)]">
+            </MagneticButton>
+            <p className="mt-6 text-sm text-[var(--color-fg-muted)]">
               Or email{" "}
               <a
                 href="mailto:hello@audaxventures.ca"
