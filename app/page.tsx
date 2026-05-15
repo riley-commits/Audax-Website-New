@@ -17,30 +17,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://audaxventures.ca" },
 };
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Audax Ventures",
-  url: "https://audaxventures.ca",
-  description:
-    "Canadian software studio helping founders ship MVPs and helping SMEs bring AI into their business.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Winnipeg",
-    addressRegion: "MB",
-    addressCountry: "CA",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "customer service",
-    email: "hello@audaxventures.ca",
-    url: "https://calendly.com/audax-ventures/30min",
-  },
-  sameAs: [
-    "https://www.linkedin.com/company/audax-ventures-inc/",
-    "https://twitter.com/audaxventures",
-  ],
-};
+// Organization JSON-LD now lives in app/layout.tsx so every page emits it.
 
 // Trust strip — real client logos from /public/logos/. Duplicated so the
 // marquee animation can loop seamlessly via -50% translate.
@@ -88,11 +65,6 @@ const testimonials = [
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-
       {/* HERO */}
       <section className="mx-auto max-w-[1280px] px-6 md:px-12 pt-16 md:pt-24 pb-8">
         <h1 className="font-[family-name:var(--font-outfit)] text-[clamp(2.5rem,6vw,6rem)] font-bold leading-[1.0] tracking-tight text-[var(--color-fg)] max-w-[14ch] mb-8">

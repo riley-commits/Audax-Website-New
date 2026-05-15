@@ -127,10 +127,15 @@ const approach = [
 // ── Option 1: Count-up stat ───────────────────────────────────────────────────
 
 function CountUp({ stat, started }: { stat: typeof stats[0]; started: boolean }) {
-  const [count, setCount] = useState(0);
+  // Sentinel pattern: count=null means we render the final display value
+  // (SSR + pre-hydration). Once the parent signals started=true after
+  // hydration, we set count=0 and animate up. This keeps SSR HTML showing
+  // real numbers for SEO + no-JS users instead of placeholder zeros.
+  const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
     if (!started) return;
+    setCount(0);
     const steps = 50;
     const duration = 1600;
     let step = 0;
@@ -143,14 +148,20 @@ function CountUp({ stat, started }: { stat: typeof stats[0]; started: boolean })
     return () => clearInterval(id);
   }, [started, stat.value]);
 
-  const formatted = stat.value % 1 !== 0
-    ? count.toFixed(count >= stat.value ? 1 : 0)
-    : Math.round(count).toLocaleString();
+  let displayValue: string;
+  if (count === null) {
+    displayValue = stat.display;
+  } else {
+    const formatted = stat.value % 1 !== 0
+      ? count.toFixed(count >= stat.value ? 1 : 0)
+      : Math.round(count).toLocaleString();
+    displayValue = `${stat.prefix}${formatted}${stat.suffix}`;
+  }
 
   return (
     <div className="text-center">
       <div className="font-[var(--font-outfit)] font-extrabold text-5xl sm:text-6xl text-white mb-2 tabular-nums">
-        {stat.prefix}{formatted}{stat.suffix}
+        {displayValue}
       </div>
       <div className="text-white/50 text-sm font-medium">{stat.label}</div>
     </div>
